@@ -1,8 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import MainPage from './components/main-page.jsx';
+import App from './components/app.jsx';
 
-ReactDOM.render(
-  <MainPage />,
-  document.querySelector(`.page`)
-);
+const init = () => {
+  const CardInfo = [
+    {title: `Beautiful &amp; luxurious apartment at great location`},
+    {title: `Wood and stone place`},
+    {title: `Canal View Prinsengracht`},
+    {title: `Nice, cozy, warm big bed apartment`}
+  ];
+
+  ReactDOM.render(
+      <App cards={CardInfo}/>,
+      document.querySelector(`#root`)
+  );
+};
+
+init();
