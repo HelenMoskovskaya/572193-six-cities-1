@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 const MainPage = (props) => {
   const {cards} = props;
+  const clickHandler = props.onClick;
+
   return <div>
     <div style={{display: `none`}}>
       <svg xmlns="http://www.w3.org/2000/svg">
@@ -144,7 +146,7 @@ const MainPage = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">{it.title}</a>
+                      <a onClick={clickHandler} href="#">{it.title}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -164,7 +166,8 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cards: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  onClick: PropTypes.func
 };
 
 export default MainPage;
