@@ -3,15 +3,14 @@ import MainPage from '../main-page/main-page.jsx';
 import PropTypes from "prop-types";
 
 const App = (props) => {
-  const {cards} = props;
+  const {offers} = props;
   return <MainPage
-    cards = {cards}
+    offers = {offers}
   />;
 };
 
 App.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired
+  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default App;
-
