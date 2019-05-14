@@ -22,12 +22,13 @@ it(`Click on the image correctly works`, () => {
   imgLink.simulate(`click`, {preventDefault() { }});
 
   expect(onActivate).toHaveBeenCalledTimes(1);
+  expect(onActivate.mock.calls[0][0]).toBe(mockOffer);
 });
 
 it(`Mouseover on the cards correctly works`, () => {
   const onActivate = jest.fn();
   const app = mount(<CardOffer offer={mockOffer} onActivate={onActivate}/>);
-  const img = app.find(`.place-card__image-wrapper`);
+  const img = app.find(`article.cities__place-card`);
 
   img.simulate(`mouseover`);
 
