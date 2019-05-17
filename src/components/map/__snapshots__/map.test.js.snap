@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map correcrly renders 1`] = `
+<div
+  id="map"
+  style={
+    Object {
+      "height": 800,
+      "margin": "25px 0 25px 0",
+    }
+  }
+/>
+`;

@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import Map from './map.jsx';
 
 const mockOffer = [
   {
@@ -30,11 +30,11 @@ const mockOffer = [
     rating: 100,
     isPremium: true,
   }
-]
+];
 
-it(`App correcrly renders`, () => {
+it(`Map correcrly renders`, () => {
   const tree = renderer
-    .create(<App
+    .create(<Map
       offers={mockOffer}
     />)
     .toJSON();
