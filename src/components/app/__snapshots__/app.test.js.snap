@@ -573,7 +573,17 @@ exports[`App correcrly renders 1`] = `
         >
           <section
             className="cities__map map"
-          />
+          >
+            <div
+              id="map"
+              style={
+                Object {
+                  "height": 800,
+                  "margin": "25px 0 25px 0",
+                }
+              }
+            />
+          </section>
         </div>
       </div>
     </div>

@@ -120,6 +120,8 @@ const MainPage = (props) => {
             <section className="cities__map map">
               <Map
                 offers={offers}
+                city={[52.38333, 4.9]}
+                zoomMap={12}
               />
             </section>
           </div>

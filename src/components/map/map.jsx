@@ -12,7 +12,11 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    this._createMap();
+    try {
+      this._createMap();
+    } catch (error) {
+      return;
+    }
   }
 
   componentWillUnmount() {
@@ -20,22 +24,20 @@ class Map extends PureComponent {
   }
 
   _createMap() {
-    const {offers} = this.props;
-    const city = [52.38333, 4.9];
+    const {offers, city, zoomMap} = this.props;
 
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
-    const zoomCity = 12;
     const map = leaflet.map(`map`, {
       center: city,
-      zoom: zoomCity,
+      zoom: zoomMap,
       zoomControl: false,
       marker: true
     });
-    map.setView(city, zoomCity);
+    map.setView(city, zoomMap);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -57,6 +59,8 @@ Map.propTypes = {
         coords: PropTypes.arrayOf(PropTypes.number).isRequired,
       })
   ).isRequired,
+  city: PropTypes.arrayOf(PropTypes.number).isRequired,
+  zoomMap: PropTypes.number.isRequired
 };
 
 export default Map;
