@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import CardOffer from './offer-card.jsx';
 
 const mockOffer = {
+  coords: [52.3909553943508, 4.85309666406198],
   title: `Test`,
   type: `Room`,
   image: `img/test-01.jpg`,

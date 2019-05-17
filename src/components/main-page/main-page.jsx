@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PlacesList from '../offer-list/offer-list.jsx';
+import Map from '../map/map.jsx';
 
 const MainPage = (props) => {
   const {offers} = props;
@@ -116,7 +117,13 @@ const MainPage = (props) => {
             </div>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"/>
+            <section className="cities__map map">
+              <Map
+                offers={offers}
+                city={[52.38333, 4.9]}
+                zoomMap={12}
+              />
+            </section>
           </div>
         </div>
       </div>

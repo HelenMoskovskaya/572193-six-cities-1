@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import Map from './map.jsx';
 
 const mockOffer = [
   {
@@ -29,13 +29,25 @@ const mockOffer = [
     price: 620,
     rating: 100,
     isPremium: true,
-  }
-]
+  },
+];
 
-it(`App correcrly renders`, () => {
+const leaflet = () => {
+  const div = global.document.createElement(`div`);
+  div.setAttribute(`id`, `map`);
+  global.document.body.appendChild(div)
+}
+
+const city = [52.38333, 4.9];
+  const zoomMap = 14;
+
+it(`Map correcrly renders`, () => {
   const tree = renderer
-    .create(<App
+    .create(<Map
       offers={mockOffer}
+      city={city}
+      zoomMap={zoomMap}
+      leaflet={leaflet}
     />)
     .toJSON();
 

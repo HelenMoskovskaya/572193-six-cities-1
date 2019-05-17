@@ -4,6 +4,7 @@ import MainPage from './main-page.jsx';
 
 const mockOffer = [
   {
+    coords: [52.3909553943508, 4.85309666406198],
     title: `Test`,
     type: `Test`,
     image: `img/test-01.jpg`,
@@ -12,6 +13,7 @@ const mockOffer = [
     isPremium: false,
   },
   {
+    coords: [52.369553943508, 4.85309666406198],
     title: `Test`,
     type: `Test`,
     image: `img/test-02.jpg`,
@@ -20,6 +22,7 @@ const mockOffer = [
     isPremium: false,
   },
   {
+    coords: [52.3909553943508, 4.929309666406198],
     title: `Test`,
     type: `Room`,
     image: `img/test-03.jpg`,
