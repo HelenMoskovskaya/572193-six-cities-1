@@ -1,7 +1,7 @@
 export default [
   {
     city: `Paris`,
-    centerCityCoords: [48.85881005, 2.32003101],
+    centerCityCoords: [48.8351, 2.3425],
     offerCoords: [48.83832557, 2.29878187],
     title: `Wood and stone place`,
     type: `Private room`,
@@ -12,7 +12,7 @@ export default [
   },
   {
     city: `Paris`,
-    centerCityCoords: [48.85881005, 2.32003101],
+    centerCityCoords: [48.8351, 2.3425],
     offerCoords: [48.86905515, 2.36973166],
     title: `Wood and stone place`,
     type: `Private room`,
@@ -23,7 +23,7 @@ export default [
   },
   {
     city: `Cologne`,
-    centerCityCoords: [50.938361, 6.959974],
+    centerCityCoords: [50.9130, 6.9540],
     offerCoords: [50.92812784, 6.9745481],
     title: `Nice, cozy, warm big bed apartment`,
     type: `Apartment`,
@@ -34,7 +34,7 @@ export default [
   },
   {
     city: `Cologne`,
-    centerCityCoords: [50.938361, 6.959974],
+    centerCityCoords: [50.9130, 6.9540],
     offerCoords: [50.94851179, 6.9483161],
     title: `Canal View Prinsengracht`,
     type: `Apartment`,
@@ -45,7 +45,7 @@ export default [
   },
   {
     city: `Brussels`,
-    centerCityCoords: [50.8465573, 4.351697],
+    centerCityCoords: [50.8222, 4.3599],
     offerCoords: [50.82894742, 4.37661409],
     title: `Wood and stone place`,
     type: `Private room`,
@@ -56,7 +56,7 @@ export default [
   },
   {
     city: `Amsterdam`,
-    centerCityCoords: [52.38333, 4.9],
+    centerCityCoords: [52.3679, 4.9014],
     offerCoords: [52.3909553943508, 4.85309666406198],
     title: `Beautiful luxurious apartment at great location`,
     type: `Apartment`,
@@ -67,7 +67,7 @@ export default [
   },
   {
     city: `Amsterdam`,
-    centerCityCoords: [52.38333, 4.9],
+    centerCityCoords: [52.3679, 4.9014],
     offerCoords: [52.3909553943508, 4.929309666406198],
     title: `Canal View Prinsengracht`,
     type: `Apartment`,
@@ -78,7 +78,7 @@ export default [
   },
   {
     city: `Hamburg`,
-    centerCityCoords: [53.550341, 10.000654],
+    centerCityCoords: [53.5223, 10.0031],
     offerCoords: [53.55453394, 10.01213372],
     title: `Beautiful luxurious apartment at great location`,
     type: `Apartment`,
@@ -89,7 +89,7 @@ export default [
   },
   {
     city: `Dusseldorf`,
-    centerCityCoords: [51.2254018, 6.7763137],
+    centerCityCoords: [51.1961, 6.7813],
     offerCoords: [51.22621102, 6.78346485],
     title: `Canal View Prinsengracht`,
     type: `Apartment`,
@@ -100,7 +100,7 @@ export default [
   },
   {
     city: `Dusseldorf`,
-    centerCityCoords: [51.2254018, 6.7763137],
+    centerCityCoords: [51.1961, 6.7813],
     offerCoords: [51.23314105, 6.77579641],
     title: `Canal View Prinsengracht`,
     type: `Apartment`,

@@ -1,6 +1,6 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import CardOffer from "../offer-card/offer-card.jsx";
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
+import CardOffer from '../offer-card/offer-card.jsx';
 
 class OfferList extends PureComponent {
   constructor(props) {

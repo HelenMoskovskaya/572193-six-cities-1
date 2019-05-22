@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import MainPage from '../main-page/main-page.jsx';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 
@@ -13,21 +13,19 @@ const App = (props) => {
   return <MainPage
     offers = {offers}
     cities = {cities}
-    onCityClick={(activeCity) => onCityClick(activeCity, allOffers)}
-    city={city ? city : cities[0]}
+    onCityClick={onCityClick}
+    city={city}
   />;
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: state.city,
-  offers: state.offers
+  offers: state.offers.filter((it) => it.city === state.city)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCityClick: (activeCity, allOffers) => {
+  onCityClick: (activeCity) => {
     dispatch(ActionCreator.changeCity(activeCity));
-    dispatch(ActionCreator.getOffers(activeCity, allOffers));
-
   }
 });
 

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import {App} from '../app/app';
 
-const mockOffer = [
+const mockAllOffers = [
   {
     city: `Paris`,
     centerCityCoords: [48.85881005, 2.32003101],
@@ -38,10 +38,38 @@ const mockOffer = [
   },
 ]
 
+const mockOffers = [
+  {
+    city: `Paris`,
+    centerCityCoords: [48.85881005, 2.32003101],
+    offerCoords: [48.83832557, 2.29878187],
+    title: `Wood and stone place`,
+    type: `Private room`,
+    image: `img/room.jpg`,
+    price: 80,
+    rating: 80,
+    isPremium: false,
+  },
+  {
+    city: `Paris`,
+    centerCityCoords: [48.85881005, 2.32003101],
+    offerCoords: [48.86905515, 2.36973166],
+    title: `Wood and stone place`,
+    type: `Private room`,
+    image: `img/room.jpg`,
+    price: 80,
+    rating: 80,
+    isPremium: false,
+  },
+]
+
 it(`App correcrly renders`, () => {
   const tree = renderer
     .create(<App
-      offers={mockOffer}
+      allOffers={mockAllOffers}
+      offers={mockOffers}
+      onCityClick={jest.fn()}
+      city={`Paris`}
     />)
     .toJSON();
 

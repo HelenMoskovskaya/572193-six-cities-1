@@ -1,19 +1,23 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-class Map extends PureComponent {
+class MapCity extends PureComponent {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return <div id="map" style={{height: 800, margin: `25px 0 25px 0`}}></div>;
+    return <div id="map" style={{height: 800}}></div>;
   }
 
   componentDidMount() {
     const {offers, centerCoords, zoomMap} = this.props;
-    this._createMap(offers, centerCoords, zoomMap);
+    try {
+      this._createMap(offers, centerCoords, zoomMap);
+    } catch (error) {
+      return;
+    }
   }
 
   componentWillUnmount() {
@@ -57,7 +61,7 @@ class Map extends PureComponent {
   }
 }
 
-Map.propTypes = {
+MapCity.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         offerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -67,4 +71,4 @@ Map.propTypes = {
   zoomMap: PropTypes.number.isRequired
 };
 
-export default Map;
+export default MapCity;
