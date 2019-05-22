@@ -12,43 +12,47 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    try {
-      this._createMap();
-    } catch (error) {
-      return;
-    }
+    const {offers, centerCoords, zoomMap} = this.props;
+    this._createMap(offers, centerCoords, zoomMap);
   }
 
   componentWillUnmount() {
     this.map.remove();
   }
 
-  _createMap() {
-    const {offers, city, zoomMap} = this.props;
+  componentWillReceiveProps(nextProps) {
+    if (this.props.offers !== nextProps.offers) {
+      const {offers, centerCoords, zoomMap} = nextProps;
+      this.map.remove();
+      this._createMap(offers, centerCoords, zoomMap);
+    }
+  }
 
+  _createMap(offers, centerCoords, zoomMap) {
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
-    const map = leaflet.map(`map`, {
-      center: city,
+    this.map = leaflet.map(`map`, {
+      center: centerCoords,
       zoom: zoomMap,
       zoomControl: false,
       marker: true
     });
-    map.setView(city, zoomMap);
+
+    this.map.setView(centerCoords, zoomMap);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-    .addTo(map);
+    .addTo(this.map);
 
-    offers.map((offer) => {
+    offers.forEach((offer) => {
       leaflet
-      .marker(offer.coords, {icon})
-      .addTo(map);
+      .marker(offer.offerCoords, {icon})
+      .addTo(this.map);
     });
   }
 }
@@ -56,10 +60,10 @@ class Map extends PureComponent {
 Map.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+        offerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
       })
   ).isRequired,
-  city: PropTypes.arrayOf(PropTypes.number).isRequired,
+  centerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoomMap: PropTypes.number.isRequired
 };
 

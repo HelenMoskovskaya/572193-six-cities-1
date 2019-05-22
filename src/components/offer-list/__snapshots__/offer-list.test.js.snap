@@ -19,7 +19,7 @@ exports[`OfferList correcrly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/test-01.jpg"
+          src="img/room.jpg"
           width="260"
         />
       </a>
@@ -37,7 +37,7 @@ exports[`OfferList correcrly renders 1`] = `
             className="place-card__price-value"
           >
             €
-            30
+            80
           </b>
           <span
             className="place-card__price-text"
@@ -74,7 +74,7 @@ exports[`OfferList correcrly renders 1`] = `
           <span
             style={
               Object {
-                "width": "39%",
+                "width": "80%",
               }
             }
           />
@@ -92,13 +92,13 @@ exports[`OfferList correcrly renders 1`] = `
           href="#"
           onClick={[Function]}
         >
-          Test
+          Wood and stone place
         </a>
       </h2>
       <p
         className="place-card__type"
       >
-        Test
+        Private room
       </p>
     </div>
   </article>
@@ -117,7 +117,7 @@ exports[`OfferList correcrly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/test-02.jpg"
+          src="img/room.jpg"
           width="260"
         />
       </a>
@@ -135,7 +135,7 @@ exports[`OfferList correcrly renders 1`] = `
             className="place-card__price-value"
           >
             €
-            320
+            80
           </b>
           <span
             className="place-card__price-text"
@@ -172,7 +172,7 @@ exports[`OfferList correcrly renders 1`] = `
           <span
             style={
               Object {
-                "width": "89%",
+                "width": "80%",
               }
             }
           />
@@ -190,13 +190,13 @@ exports[`OfferList correcrly renders 1`] = `
           href="#"
           onClick={[Function]}
         >
-          Test
+          Wood and stone place
         </a>
       </h2>
       <p
         className="place-card__type"
       >
-        Test
+        Private room
       </p>
     </div>
   </article>
@@ -222,7 +222,7 @@ exports[`OfferList correcrly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/test-03.jpg"
+          src="img/apartment-03.jpg"
           width="260"
         />
       </a>
@@ -240,7 +240,7 @@ exports[`OfferList correcrly renders 1`] = `
             className="place-card__price-value"
           >
             €
-            620
+            180
           </b>
           <span
             className="place-card__price-text"
@@ -295,13 +295,13 @@ exports[`OfferList correcrly renders 1`] = `
           href="#"
           onClick={[Function]}
         >
-          Test
+          Nice, cozy, warm big bed apartment
         </a>
       </h2>
       <p
         className="place-card__type"
       >
-        Room
+        Apartment
       </p>
     </div>
   </article>

@@ -4,50 +4,56 @@ import Map from './map.jsx';
 
 const mockOffer = [
   {
-    coords: [52.3909553943508, 4.85309666406198],
-    title: `Test`,
-    type: `Test`,
-    image: `img/test-01.jpg`,
-    price: 30,
-    rating: 39,
+    city: `Paris`,
+    centerCityCoords: [48.85881005, 2.32003101],
+    offerCoords: [48.83832557, 2.29878187],
+    title: `Wood and stone place`,
+    type: `Private room`,
+    image: `img/room.jpg`,
+    price: 80,
+    rating: 80,
     isPremium: false,
   },
   {
-    coords: [52.369553943508, 4.85309666406198],
-    title: `Test`,
-    type: `Test`,
-    image: `img/test-02.jpg`,
-    price: 320,
-    rating: 89,
+    city: `Paris`,
+    centerCityCoords: [48.85881005, 2.32003101],
+    offerCoords: [48.86905515, 2.36973166],
+    title: `Wood and stone place`,
+    type: `Private room`,
+    image: `img/room.jpg`,
+    price: 80,
+    rating: 80,
     isPremium: false,
   },
   {
-    coords: [52.3909553943508, 4.929309666406198],
-    title: `Test`,
-    type: `Room`,
-    image: `img/test-03.jpg`,
-    price: 620,
+    city: `Cologne`,
+    centerCityCoords: [50.938361, 6.959974],
+    offerCoords: [50.92812784, 6.9745481],
+    title: `Nice, cozy, warm big bed apartment`,
+    type: `Apartment`,
+    image: `img/apartment-03.jpg`,
+    price: 180,
     rating: 100,
     isPremium: true,
   },
 ];
 
-const leaflet = () => {
+const testLeaflet = () => {
   const div = global.document.createElement(`div`);
   div.setAttribute(`id`, `map`);
   global.document.body.appendChild(div)
 }
 
 const city = [52.38333, 4.9];
-  const zoomMap = 14;
+const zoomMap = 14;
 
 it(`Map correcrly renders`, () => {
   const tree = renderer
     .create(<Map
       offers={mockOffer}
-      city={city}
+      centerCoords={city}
       zoomMap={zoomMap}
-      leaflet={leaflet}
+      leaflet={testLeaflet}
     />)
     .toJSON();
 
