@@ -1,19 +1,20 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-class Map extends PureComponent {
+class MapCity extends PureComponent {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return <div id="map" style={{height: 800, margin: `25px 0 25px 0`}}></div>;
+    return <div id="map" style={{height: 800}}></div>;
   }
 
   componentDidMount() {
+    const {offers, centerCoords, zoomMap} = this.props;
     try {
-      this._createMap();
+      this._createMap(offers, centerCoords, zoomMap);
     } catch (error) {
       return;
     }
@@ -23,44 +24,51 @@ class Map extends PureComponent {
     this.map.remove();
   }
 
-  _createMap() {
-    const {offers, city, zoomMap} = this.props;
+  componentWillReceiveProps(nextProps) {
+    if (this.props.offers !== nextProps.offers) {
+      const {offers, centerCoords, zoomMap} = nextProps;
+      this.map.remove();
+      this._createMap(offers, centerCoords, zoomMap);
+    }
+  }
 
+  _createMap(offers, centerCoords, zoomMap) {
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
-    const map = leaflet.map(`map`, {
-      center: city,
+    this.map = leaflet.map(`map`, {
+      center: centerCoords,
       zoom: zoomMap,
       zoomControl: false,
       marker: true
     });
-    map.setView(city, zoomMap);
+
+    this.map.setView(centerCoords, zoomMap);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-    .addTo(map);
+    .addTo(this.map);
 
-    offers.map((offer) => {
+    offers.forEach((offer) => {
       leaflet
-      .marker(offer.coords, {icon})
-      .addTo(map);
+      .marker(offer.offerCoords, {icon})
+      .addTo(this.map);
     });
   }
 }
 
-Map.propTypes = {
+MapCity.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+        offerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
       })
   ).isRequired,
-  city: PropTypes.arrayOf(PropTypes.number).isRequired,
+  centerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoomMap: PropTypes.number.isRequired
 };
 
-export default Map;
+export default MapCity;

@@ -16,7 +16,7 @@ exports[`CardOffer correcrly renders 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/test-01.jpg"
+        src="img/room.jpg"
         width="260"
       />
     </a>
@@ -34,7 +34,7 @@ exports[`CardOffer correcrly renders 1`] = `
           className="place-card__price-value"
         >
           €
-          320
+          80
         </b>
         <span
           className="place-card__price-text"
@@ -71,7 +71,7 @@ exports[`CardOffer correcrly renders 1`] = `
         <span
           style={
             Object {
-              "width": "89%",
+              "width": "80%",
             }
           }
         />
@@ -89,13 +89,13 @@ exports[`CardOffer correcrly renders 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Test
+        Wood and stone place
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Room
+      Private room
     </p>
   </div>
 </article>

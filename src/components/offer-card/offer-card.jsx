@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const CardOffer = (props) => {
 
@@ -64,8 +64,8 @@ CardOffer.propTypes = {
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired
   }),
-  onActivate: PropTypes.func,
-  onTitleClick: PropTypes.func
+  onActivate: PropTypes.func.isRequired,
+  onTitleClick: PropTypes.func.isRequired
 };
 
 export default CardOffer;
