@@ -1,7 +1,7 @@
 import offers from './mocks/offers.js';
 
 const initialState = {
-  city: offers[0].city,
+  city: `Amsterdam`,
   offers
 };
 

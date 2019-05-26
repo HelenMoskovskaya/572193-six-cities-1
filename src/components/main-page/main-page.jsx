@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import OfferList from '../offer-list/offer-list.jsx';
 import MapCity from '../map/map.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
+import withActiveItem from '../../hocs/with-active-item.jsx';
+
+
+const WrappedOfferList = withActiveItem(OfferList);
+const WrappedCitiesList = withActiveItem(CitiesList);
+
 
 const MainPage = (props) => {
   const {offers, cities, onCityClick, city} = props;
@@ -47,7 +53,7 @@ const MainPage = (props) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
-        <CitiesList
+        <WrappedCitiesList
           cities={cities}
           city={city}
           onCityClick={onCityClick}
@@ -73,7 +79,7 @@ const MainPage = (props) => {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <OfferList
+            <WrappedOfferList
               offers={offers}
             />
           </section>

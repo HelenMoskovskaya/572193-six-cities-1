@@ -18,7 +18,7 @@ it(`CardOffer correcrly renders`, () => {
   const tree = renderer
     .create(<CardOffer
       offer={mockOffer}
-      onActivate={jest.fn()}
+      onActivateElement={jest.fn()}
       onTitleClick={jest.fn()}
     />)
     .toJSON();

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CitiesList = (props) => {
-  const {cities, city, onCityClick} = props;
+  const {cities, city, onCityClick, handleActivateElement} = props;
 
   return <section className="locations container">
     <ul className="locations__list tabs__list">
@@ -14,6 +14,7 @@ const CitiesList = (props) => {
           onClick={(evt) => {
             evt.preventDefault();
             onCityClick(it);
+            handleActivateElement(it)
           }}>
             <span>{it}</span>
           </a>
@@ -26,7 +27,8 @@ const CitiesList = (props) => {
 CitiesList.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   city: PropTypes.string.isRequired,
-  onCityClick: PropTypes.func.isRequired
+  onCityClick: PropTypes.func.isRequired,
+  handleActivateElement: PropTypes.func.isRequired
 };
 
 export default CitiesList;
