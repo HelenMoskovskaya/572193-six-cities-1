@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CardOffer from '../offer-card/offer-card.jsx';
+import withActiveItem from '../../hocs/with-active-item.jsx';
+
 
 const OfferList = (props) => {
   const {offers, handleActivateElement} = props;
@@ -23,4 +25,4 @@ OfferList.propTypes = {
 };
 
 
-export default OfferList;
+export default withActiveItem(OfferList);

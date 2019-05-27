@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import withActiveItem from '../../hocs/with-active-item.jsx';
 
 const CitiesList = (props) => {
   const {cities, city, onCityClick, handleActivateElement} = props;
@@ -31,4 +32,4 @@ CitiesList.propTypes = {
   handleActivateElement: PropTypes.func.isRequired
 };
 
-export default CitiesList;
+export default withActiveItem(CitiesList);

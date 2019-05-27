@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 
 const withActiveItem = (Component) => {
-  return class WithActiveItem extends PureComponent {
+  class WithActiveItem extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -23,7 +23,11 @@ const withActiveItem = (Component) => {
       this.setState({activeItem});
     }
 
-  };
+  }
+
+  WithActiveItem.displayName = `WithActiveItem(${Component.displayName || Component.name || `Component`})`;
+
+  return WithActiveItem;
 };
 
 export default withActiveItem;
