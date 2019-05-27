@@ -4,6 +4,7 @@ import OfferList from '../offer-list/offer-list.jsx';
 import MapCity from '../map/map.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 
+
 const MainPage = (props) => {
   const {offers, cities, onCityClick, city} = props;
   return <div className="page page--gray page--main">

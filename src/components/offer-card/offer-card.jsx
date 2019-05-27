@@ -3,17 +3,15 @@ import PropTypes from 'prop-types';
 
 const CardOffer = (props) => {
 
-  const {offer, onActivate, onTitleClick} = props;
-  return <article className="cities__place-card place-card" onMouseOver={() => {
-    onActivate(offer);
-  }}>
+  const {offer, onActivateElement, onTitleClick} = props;
+  return <article className="cities__place-card place-card">
     {offer.isPremium && (<div className="place-card__mark">
       <span>Premium</span>
     </div>)}
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#" onClick={(evt) => {
         evt.preventDefault();
-        onActivate(offer);
+        onActivateElement(offer);
       }}>
         <img
           className="place-card__image"
@@ -64,7 +62,7 @@ CardOffer.propTypes = {
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired
   }),
-  onActivate: PropTypes.func.isRequired,
+  onActivateElement: PropTypes.func.isRequired,
   onTitleClick: PropTypes.func.isRequired
 };
 
