@@ -48,11 +48,7 @@ const MainPage = (props) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
-        <CitiesList
-          cities={cities}
-          city={city}
-          onCityClick={onCityClick}
-        />
+
       </div>
       <div className="cities__places-wrapper">
         <div className="cities__places-container container">
@@ -80,11 +76,7 @@ const MainPage = (props) => {
           </section>
           <div className="cities__right-section">
             <section className="cities__map map">
-              <MapCity
-                offers={offers}
-                centerCoords={offers[0].centerCityCoords}
-                zoomMap={12}
-              />
+
             </section>
           </div>
         </div>

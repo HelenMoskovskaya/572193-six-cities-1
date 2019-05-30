@@ -5,7 +5,7 @@ const CardOffer = (props) => {
 
   const {offer, onActivateElement, onTitleClick} = props;
   return <article className="cities__place-card place-card">
-    {offer.isPremium && (<div className="place-card__mark">
+    {offer.is_premium && (<div className="place-card__mark">
       <span>Premium</span>
     </div>)}
     <div className="cities__image-wrapper place-card__image-wrapper">
@@ -15,7 +15,7 @@ const CardOffer = (props) => {
       }}>
         <img
           className="place-card__image"
-          src={offer.image}
+          src={offer.preview_image}
           width="260"
           height="200"
           alt="Place image"
@@ -37,7 +37,7 @@ const CardOffer = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: `${offer.rating}` + `%`}} />
+          <span style={{width: `${offer.rating / 5 * 100}` + `%`}} />
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
