@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 
 const withActiveItem = (Component) => {
   class WithActiveItem extends PureComponent {
@@ -29,5 +30,10 @@ const withActiveItem = (Component) => {
 
   return WithActiveItem;
 };
+
+withActiveItem.propTypes = {
+  handleActivateElement: PropTypes.func.isRequired
+};
+
 
 export default withActiveItem;
