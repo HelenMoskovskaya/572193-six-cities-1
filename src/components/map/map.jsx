@@ -12,9 +12,9 @@ class MapCity extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers, centerCoords, zoomMap} = this.props;
+    const {offers} = this.props;
     try {
-      this._createMap(offers, centerCoords, zoomMap);
+      this._createMap(offers);
     } catch (error) {
       return;
     }
@@ -25,27 +25,31 @@ class MapCity extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
+    const {offers} = this.props;
     if (this.props.offers !== nextProps.offers) {
-      const {offers, centerCoords, zoomMap} = nextProps;
+      const {offers} = nextProps;
       this.map.remove();
-      this._createMap(offers, centerCoords, zoomMap);
+      this._createMap(offers);
     }
   }
 
-  _createMap(offers, centerCoords, zoomMap) {
+  _createMap(offers) {
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
+    const city = [52.38333, 4.9]
+    const zoom = 12;
+
     this.map = leaflet.map(`map`, {
-      center: centerCoords,
-      zoom: zoomMap,
+      center: city,
+      zoom: zoom,
       zoomControl: false,
       marker: true
     });
 
-    this.map.setView(centerCoords, zoomMap);
+    this.map.setView(city, zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -55,20 +59,12 @@ class MapCity extends PureComponent {
 
     offers.forEach((offer) => {
       leaflet
-      .marker(offer.offerCoords, {icon})
+      .marker([offer.location.latitude, offer.location.longitude], {icon})
       .addTo(this.map);
     });
   }
 }
 
-MapCity.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        offerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-      })
-  ).isRequired,
-  centerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-  zoomMap: PropTypes.number.isRequired
-};
 
-export default MapCity;
+
+export default MapCity

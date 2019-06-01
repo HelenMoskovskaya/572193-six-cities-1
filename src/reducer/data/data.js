@@ -30,6 +30,7 @@ const Operation = {
   },
 };
 
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case `CHANGE_CITY`:
@@ -39,7 +40,8 @@ const reducer = (state = initialState, action) => {
 
     case `LOAD_OFFERS`:
       return Object.assign({}, state, {
-        offers: action.payload
+        offers: action.payload,
+        city: action.payload[Math.floor(Math.random()*action.payload.length)].city.name
       });
     }
 

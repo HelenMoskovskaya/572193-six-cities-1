@@ -6,11 +6,11 @@ import {ActionCreator} from '../../reducer/data/data.js';
 import {getOffers, getActiveCity, getCityList, getActiveOffers} from '../../reducer/data/selectors.js';
 
 const App = (props) => {
-  const {allOffers, offers, city, onCityClick} = props;
-
+  const {offers, city, onCityClick, cities} = props;
 
   return <MainPage
     offers = {offers}
+    cities = {cities}
     onCityClick={onCityClick}
     city={city}
   />;
@@ -18,7 +18,8 @@ const App = (props) => {
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: getActiveCity(state),
-  offers: getActiveOffers(state)
+  offers: getActiveOffers(state),
+  cities: getCityList(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,27 +29,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 App.propTypes = {
-  allOffers: PropTypes.arrayOf(PropTypes.PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    centerCityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    offerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    type: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired
-  })).isRequired,
   offers: PropTypes.arrayOf(PropTypes.PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    centerCityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    offerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
     type: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    preview_image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired
+    is_premium: PropTypes.bool.isRequired
   })).isRequired,
-  city: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired
 };
 

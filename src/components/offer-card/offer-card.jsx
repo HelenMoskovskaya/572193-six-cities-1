@@ -57,10 +57,10 @@ CardOffer.propTypes = {
   offer: PropTypes.shape({
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    preview_image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired
+    is_premium: PropTypes.bool.isRequired
   }),
   onActivateElement: PropTypes.func.isRequired,
   onTitleClick: PropTypes.func.isRequired

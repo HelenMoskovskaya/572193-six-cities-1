@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import {configreAPI} from './api.js';
 import {Operation} from './reducer/data/data.js';
 import reducer from './reducer/index.js';
-import {getCityOffers, getOffers} from './reducer/data/selectors.js';
+import {getCityOffers, getOffers, getActiveOffers} from './reducer/data/selectors.js';
 
 import App from './components/app/app.jsx';
 

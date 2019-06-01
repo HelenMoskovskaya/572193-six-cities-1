@@ -48,7 +48,11 @@ const MainPage = (props) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
-
+        <CitiesList
+          cities={cities}
+          city={city}
+          onCityClick={onCityClick}
+        />
       </div>
       <div className="cities__places-wrapper">
         <div className="cities__places-container container">
@@ -76,7 +80,9 @@ const MainPage = (props) => {
           </section>
           <div className="cities__right-section">
             <section className="cities__map map">
-
+              <MapCity
+              offers={offers}
+              />
             </section>
           </div>
         </div>
@@ -90,14 +96,11 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    centerCityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    offerCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
     type: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    preview_image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired
+    is_premium: PropTypes.bool.isRequired
   })).isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   city: PropTypes.string.isRequired,

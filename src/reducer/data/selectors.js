@@ -28,3 +28,4 @@ export const getActiveOffers = createSelector (
   (offers, city) => {
     return offers.filter((it) => it.city.name === city)}
     )
+
