@@ -12,56 +12,53 @@ class MapCity extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
     try {
-      this._createMap(offers);
+      this._createMap();
     } catch (error) {
       return;
     }
   }
 
-  componentWillUnmount() {
-    this.map.remove();
+  componentDidUpdate() {
+    this._updateMap()
   }
 
-  componentWillReceiveProps(nextProps) {
+  _createMap() {
     const {offers} = this.props;
-    if (this.props.offers !== nextProps.offers) {
-      const {offers} = nextProps;
-      this.map.remove();
-      this._createMap(offers);
-    }
-  }
 
-  _createMap(offers) {
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
-    });
-
-    const city = [52.38333, 4.9]
-    const zoom = 12;
+    const city = [0,0];
+    const zoom = 0;
 
     this.map = leaflet.map(`map`, {
       center: city,
       zoom: zoom,
       zoomControl: false,
-      marker: true
-    });
-
-    this.map.setView(city, zoom);
-
-    leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+      layers: new leaflet.TileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-    .addTo(this.map);
-
-    offers.forEach((offer) => {
-      leaflet
-      .marker([offer.location.latitude, offer.location.longitude], {icon})
-      .addTo(this.map);
     });
+    this.markers = leaflet.layerGroup().addTo(this.map);
+    this._addMarkers(offers, this.markers);
+  }
+
+  _addMarkers (offers, group) {
+    const icon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+    offers.map((offer) => {
+      leaflet.marker([offer.location.latitude, offer.location.longitude], {icon}).addTo(group)
+    })
+  }
+
+  _updateMap() {
+    const {offers} = this.props;
+
+    if (this.map) {
+      this.map.setView([offers[0].city.location.latitude, offers[0].city.location.longitude], offers[0].city.location.zoom);
+      this.markers.clearLayers();
+      this._addMarkers(offers, this.markers);
+    }
   }
 }
 

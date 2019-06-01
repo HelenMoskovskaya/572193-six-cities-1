@@ -7,7 +7,6 @@ import {getOffers, getActiveCity, getCityList, getActiveOffers} from '../../redu
 
 const App = (props) => {
   const {offers, city, onCityClick, cities} = props;
-
   return <MainPage
     offers = {offers}
     cities = {cities}

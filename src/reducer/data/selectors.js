@@ -18,10 +18,6 @@ export const getCityList = (state) => {
   return cities
 }
 
-const randomFilter = (_state) => {
-  return Math.random() > 0.5;
-};
-
 export const getActiveOffers = createSelector (
   getOffers,
   getActiveCity,

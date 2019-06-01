@@ -18,7 +18,6 @@ exports[`OfferList correcrly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/room.jpg"
           width="260"
         />
       </a>
@@ -73,7 +72,7 @@ exports[`OfferList correcrly renders 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "1600%",
               }
             }
           />
@@ -115,7 +114,6 @@ exports[`OfferList correcrly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/room.jpg"
           width="260"
         />
       </a>
@@ -170,7 +168,7 @@ exports[`OfferList correcrly renders 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "1600%",
               }
             }
           />
@@ -202,13 +200,6 @@ exports[`OfferList correcrly renders 1`] = `
     className="cities__place-card place-card"
   >
     <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
-    <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
@@ -219,7 +210,6 @@ exports[`OfferList correcrly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-03.jpg"
           width="260"
         />
       </a>
@@ -274,7 +264,7 @@ exports[`OfferList correcrly renders 1`] = `
           <span
             style={
               Object {
-                "width": "100%",
+                "width": "2000%",
               }
             }
           />
