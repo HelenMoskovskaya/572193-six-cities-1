@@ -234,7 +234,7 @@ exports[`App correcrly renders 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/room.jpg"
+                    src="https://es31-server.appspot.com/six-cities/static/hotel/3.jpg"
                     width="260"
                   />
                 </a>
@@ -252,7 +252,7 @@ exports[`App correcrly renders 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      80
+                      569
                     </b>
                     <span
                       className="place-card__price-text"
@@ -289,7 +289,7 @@ exports[`App correcrly renders 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "60%",
                         }
                       }
                     />
@@ -307,13 +307,13 @@ exports[`App correcrly renders 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Wood and stone place
+                    Amazing and Extremely Central Flat
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Private room
+                  apartment
                 </p>
               </div>
             </article>
@@ -331,7 +331,7 @@ exports[`App correcrly renders 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/room.jpg"
+                    src="https://es31-server.appspot.com/six-cities/static/hotel/3.jpg"
                     width="260"
                   />
                 </a>
@@ -349,7 +349,7 @@ exports[`App correcrly renders 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      80
+                      569
                     </b>
                     <span
                       className="place-card__price-text"
@@ -386,7 +386,7 @@ exports[`App correcrly renders 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "60%",
                         }
                       }
                     />
@@ -404,13 +404,13 @@ exports[`App correcrly renders 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Wood and stone place
+                    Amazing and Extremely Central Flat
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Private room
+                  apartment
                 </p>
               </div>
             </article>

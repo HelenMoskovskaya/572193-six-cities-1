@@ -80,32 +80,57 @@ const MainPage = (props) => {
           </section>
           <div className="cities__right-section">
             <section className="cities__map map">
-
               <MapCity
-              offers={offers}
+                offers={offers}
               />
             </section>
           </div>
         </div>
       </div>
     </main>
-
-
   </div>;
 
 };
 
 MainPage.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.PropTypes.shape({
-    type: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    city: PropTypes.shape ({
+      name: PropTypes.string.isRequired,
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired
+      })
+    }),
     preview_image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    title: PropTypes.string.isRequired,
+    is_favorite: PropTypes.bool.isRequired,
+    is_premium: PropTypes.bool.isRequired,
     rating: PropTypes.number.isRequired,
-    is_premium: PropTypes.bool.isRequired
+    type: PropTypes.string.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    max_adults: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    host: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      is_pro: PropTypes.bool.isRequired,
+      avatar_url: PropTypes.string.isRequired
+    }),
+    description: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired
+    }),
+    id: PropTypes.number.isRequired
   })).isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+
   city: PropTypes.string.isRequired,
-  onCityClick: PropTypes.func.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onCityClick: PropTypes.func.isRequired
 };
 
 export default MainPage;

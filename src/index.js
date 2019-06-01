@@ -5,14 +5,14 @@ import {compose} from "recompose";
 
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import {configreAPI} from './api.js';
+import {configureAPI} from './api.js';
 import {Operation} from './reducer/data/data.js';
 import reducer from './reducer/index.js';
 
 import App from './components/app/app.jsx';
 
 const init = () => {
-  const api = configreAPI((...args) => store.dispatch(...args));
+  const api = configureAPI((...args) => store.dispatch(...args));
   const store = createStore(
     reducer,
     compose(

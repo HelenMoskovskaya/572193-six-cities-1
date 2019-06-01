@@ -32,7 +32,6 @@ exports[`CardOffer correcrly renders 1`] = `
           className="place-card__price-value"
         >
           €
-          80
         </b>
         <span
           className="place-card__price-text"
@@ -69,7 +68,7 @@ exports[`CardOffer correcrly renders 1`] = `
         <span
           style={
             Object {
-              "width": "1600%",
+              "width": "NaN%",
             }
           }
         />
@@ -86,15 +85,11 @@ exports[`CardOffer correcrly renders 1`] = `
       <a
         href="#"
         onClick={[Function]}
-      >
-        Wood and stone place
-      </a>
+      />
     </h2>
     <p
       className="place-card__type"
-    >
-      Private room
-    </p>
+    />
   </div>
 </article>
 `;
