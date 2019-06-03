@@ -2,40 +2,116 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Map from './map.jsx';
 
-const mockOffer = [
-  {
-    city: `Paris`,
-    centerCityCoords: [48.85881005, 2.32003101],
-    offerCoords: [48.83832557, 2.29878187],
-    title: `Wood and stone place`,
-    type: `Private room`,
-    image: `img/room.jpg`,
-    price: 80,
-    rating: 80,
-    isPremium: false,
+const mockOffers = [{
+  "city": {
+    "name": `Paris`,
+    "location": {
+      "latitude": 52.37454,
+      "longitude": 4.897976,
+      "zoom": 13
+    }
   },
-  {
-    city: `Paris`,
-    centerCityCoords: [48.85881005, 2.32003101],
-    offerCoords: [48.86905515, 2.36973166],
-    title: `Wood and stone place`,
-    type: `Private room`,
-    image: `img/room.jpg`,
-    price: 80,
-    rating: 80,
-    isPremium: false,
+  "preview_image": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
+  "images": [
+    `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/12.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/16.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/11.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/8.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/9.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/19.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/4.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/14.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/13.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/15.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/6.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/10.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`
+  ],
+  "title": `Amazing and Extremely Central Flat`,
+  "is_favorite": true,
+  "is_premium": false,
+  "rating": 3.0,
+  "type": `apartment`,
+  "bedrooms": 4,
+  "max_adults": 8,
+  "price": 569,
+  "goods": [
+    `Air conditioning`,
+    `Washer`,
+    `Laptop friendly workspace`,
+    `Breakfast`,
+    `Baby seat`
+  ],
+  "host": {
+    "id": 90,
+    "name": `Laura`,
+    "is_pro": true,
+    "avatar_url": `img/avatar-angelina.jpg`
   },
-  {
-    city: `Cologne`,
-    centerCityCoords: [50.938361, 6.959974],
-    offerCoords: [50.92812784, 6.9745481],
-    title: `Nice, cozy, warm big bed apartment`,
-    type: `Apartment`,
-    image: `img/apartment-03.jpg`,
-    price: 180,
-    rating: 100,
-    isPremium: true,
+  "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
+  "location": {
+    "latitude": 52.37154,
+    "longitude": 4.889976,
+    "zoom": 16
   },
+  "id": 1
+},
+{
+  "city": {
+    "name": `Paris`,
+    "location": {
+      "latitude": 52.37454,
+      "longitude": 4.897976,
+      "zoom": 13
+    }
+  },
+  "preview_image": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
+  "images": [
+    `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/12.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/16.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/11.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/8.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/9.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/19.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/4.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/14.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/13.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/15.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/6.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/10.jpg`,
+    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`
+  ],
+  "title": `Amazing and Extremely Central Flat`,
+  "is_favorite": true,
+  "is_premium": false,
+  "rating": 3.0,
+  "type": `apartment`,
+  "bedrooms": 4,
+  "max_adults": 8,
+  "price": 569,
+  "goods": [
+    `Air conditioning`,
+    `Washer`,
+    `Laptop friendly workspace`,
+    `Breakfast`,
+    `Baby seat`
+  ],
+  "host": {
+    "id": 90,
+    "name": `Laura`,
+    "is_pro": true,
+    "avatar_url": `img/avatar-angelina.jpg`
+  },
+  "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
+  "location": {
+    "latitude": 52.37154,
+    "longitude": 4.889976,
+    "zoom": 16
+  },
+  "id": 1
+}
 ];
 
 const testLeaflet = () => {
@@ -49,10 +125,9 @@ const zoomMap = 14;
 
 it(`Map correcrly renders`, () => {
   const tree = renderer
+
     .create(<Map
-      offers={mockOffer}
-      centerCoords={city}
-      zoomMap={zoomMap}
+      offers={mockOffers}
       leaflet={testLeaflet}
     />)
     .toJSON();

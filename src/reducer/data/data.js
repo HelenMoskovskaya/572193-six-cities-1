@@ -1,3 +1,5 @@
+import {adaptToCamelCase, getRandom} from '../../utils.js';
+
 const initialState = {
   city: ``,
   offers: []
@@ -16,9 +18,9 @@ const ActionCreator = {
 
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
-    payload: offers
+    payload: adaptToCamelCase(offers)
   }),
-}
+};
 
 
 const Operation = {
@@ -41,11 +43,11 @@ const reducer = (state = initialState, action) => {
     case `LOAD_OFFERS`:
       return Object.assign({}, state, {
         offers: action.payload,
-        city: action.payload[Math.floor(Math.random()*action.payload.length)].city.name
+        city: action.payload[Math.floor(Math.random() * action.payload.length)].city.name
       });
-    }
+  }
 
-  return state
-}
+  return state;
+};
 
 export {ActionCreator, reducer, ActionType, Operation};

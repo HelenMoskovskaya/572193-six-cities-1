@@ -2,8 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from '../app/app';
 
-const mockOffers = [
-{
+const mockOffers = [{
   "city": {
     "name": `Paris`,
     "location": {
@@ -27,14 +26,15 @@ const mockOffers = [
     `https://es31-server.appspot.com/six-cities/static/hotel/15.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/6.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/10.jpg`,
-    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`],
+    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`
+  ],
   "title": `Amazing and Extremely Central Flat`,
-  "isFavorite": true,
-  "isPremium": false,
+  "is_favorite": true,
+  "is_premium": false,
   "rating": 3.0,
   "type": `apartment`,
   "bedrooms": 4,
-  "maxAdults": 8,
+  "max_adults": 8,
   "price": 569,
   "goods": [
     `Air conditioning`,
@@ -46,8 +46,9 @@ const mockOffers = [
   "host": {
     "id": 90,
     "name": `Laura`,
-    "isPro": true,
-    "avatarUrl": `img/avatar-angelina.jpg`},
+    "is_pro": true,
+    "avatar_url": `img/avatar-angelina.jpg`
+  },
   "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
   "location": {
     "latitude": 52.37154,
@@ -80,14 +81,15 @@ const mockOffers = [
     `https://es31-server.appspot.com/six-cities/static/hotel/15.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/6.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/10.jpg`,
-    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`],
+    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`
+  ],
   "title": `Amazing and Extremely Central Flat`,
-  "isFavorite": true,
-  "isPremium": false,
+  "is_favorite": true,
+  "is_premium": false,
   "rating": 3.0,
   "type": `apartment`,
   "bedrooms": 4,
-  "maxAdults": 8,
+  "max_adults": 8,
   "price": 569,
   "goods": [
     `Air conditioning`,
@@ -99,8 +101,9 @@ const mockOffers = [
   "host": {
     "id": 90,
     "name": `Laura`,
-    "isPro": true,
-    "avatarUrl": `img/avatar-angelina.jpg`},
+    "is_pro": true,
+    "avatar_url": `img/avatar-angelina.jpg`
+  },
   "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
   "location": {
     "latitude": 52.37154,
@@ -108,19 +111,18 @@ const mockOffers = [
     "zoom": 16
   },
   "id": 1
-}];
+}
+];
 
 const cities = [`Paris`, `Cologne`]
 
 it(`App correcrly renders`, () => {
   const tree = renderer
-    .create(<App
-      offers={mockOffers}
-      onCityClick={jest.fn()}
-      city={`Paris`}
-      cities={cities}
-    />)
-    .toJSON();
+
+  .create( < App offers = { mockOffers }
+    onCityClick = { jest.fn() }
+    city = { `Paris` }
+    cities = { cities }/>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

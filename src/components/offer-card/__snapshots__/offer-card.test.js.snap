@@ -32,6 +32,7 @@ exports[`CardOffer correcrly renders 1`] = `
           className="place-card__price-value"
         >
           €
+          569
         </b>
         <span
           className="place-card__price-text"
@@ -68,7 +69,7 @@ exports[`CardOffer correcrly renders 1`] = `
         <span
           style={
             Object {
-              "width": "NaN%",
+              "width": "60%",
             }
           }
         />
@@ -85,11 +86,15 @@ exports[`CardOffer correcrly renders 1`] = `
       <a
         href="#"
         onClick={[Function]}
-      />
+      >
+        Amazing and Extremely Central Flat
+      </a>
     </h2>
     <p
       className="place-card__type"
-    />
+    >
+      apartment
+    </p>
   </div>
 </article>
 `;
