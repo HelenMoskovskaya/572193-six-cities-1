@@ -1,6 +1,6 @@
 import MockAdapter from 'axios-mock-adapter';
 import {configureAPI} from '../../api.js';
-import {ActionType, Operation, ActionCreator} from './data.js';
+import {ActionType, Operation, ActionCreatorData} from './data.js';
 
 
 describe(`Reducer works correctly`, () => {
@@ -15,20 +15,20 @@ describe(`Reducer works correctly`, () => {
       .reply(200, [{fake: true}]);
 
     return offersLoader(dispatch, jest.fn(), api).then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.LOAD_OFFERS,
-          payload: [{fake: true}],
-        });
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.LOAD_OFFERS,
+        payload: [{fake: true}],
       });
+    });
   });
 });
 
 describe(`ActionCreator works correctly`, () => {
   it(`should return the correct value, when the city changes`, () => {
-    expect(ActionCreator.changeCity(`Cologne`)).toEqual({
+    expect(ActionCreatorData.changeCity(`Cologne`)).toEqual({
       type: ActionType.CHANGE_CITY,
       payload: `Cologne`,
     });
-  })
+  });
 });

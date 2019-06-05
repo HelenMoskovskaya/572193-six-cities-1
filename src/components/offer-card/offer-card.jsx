@@ -61,8 +61,8 @@ CardOffer.propTypes = {
         latitude: PropTypes.number.isRequired,
         longitude: PropTypes.number.isRequired,
         zoom: PropTypes.number.isRequired
-      })
-    }),
+      }).isRequired
+    }).isRequired,
     previewImage: PropTypes.string.isRequired,
     images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     title: PropTypes.string.isRequired,

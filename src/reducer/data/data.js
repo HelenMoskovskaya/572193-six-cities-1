@@ -1,4 +1,4 @@
-import {adaptToCamelCase, getRandom} from '../../utils.js';
+import {adaptToCamelCase} from '../../utils.js';
 
 const initialState = {
   city: ``,
@@ -10,7 +10,7 @@ const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`
 };
 
-const ActionCreator = {
+const ActionCreatorData = {
   changeCity: (activeCity) => ({
     type: ActionType.CHANGE_CITY,
     payload: activeCity
@@ -27,7 +27,7 @@ const Operation = {
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        dispatch(ActionCreator.loadOffers(response.data));
+        dispatch(ActionCreatorData.loadOffers(response.data));
       });
   },
 };
@@ -50,4 +50,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {ActionCreator, reducer, ActionType, Operation};
+export {ActionCreatorData, reducer, ActionType, Operation};

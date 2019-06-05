@@ -18,6 +18,7 @@ exports[`OfferList correcrly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
+          src="https://es31-server.appspot.com/six-cities/static/hotel/3.jpg"
           width="260"
         />
       </a>
@@ -114,6 +115,7 @@ exports[`OfferList correcrly renders 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
+          src="https://es31-server.appspot.com/six-cities/static/hotel/3.jpg"
           width="260"
         />
       </a>

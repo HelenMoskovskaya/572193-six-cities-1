@@ -11,7 +11,7 @@ const mockOffers = [{
       "zoom": 13
     }
   },
-  "preview_image": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
+  "previewImage": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
   "images": [
     `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/12.jpg`,
@@ -29,12 +29,12 @@ const mockOffers = [{
     `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`
   ],
   "title": `Amazing and Extremely Central Flat`,
-  "is_favorite": true,
-  "is_premium": false,
+  "isFavorite": true,
+  "isPremium": false,
   "rating": 3.0,
   "type": `apartment`,
   "bedrooms": 4,
-  "max_adults": 8,
+  "maxAdults": 8,
   "price": 569,
   "goods": [
     `Air conditioning`,
@@ -46,8 +46,8 @@ const mockOffers = [{
   "host": {
     "id": 90,
     "name": `Laura`,
-    "is_pro": true,
-    "avatar_url": `img/avatar-angelina.jpg`
+    "isPro": true,
+    "avatarUrl": `img/avatar-angelina.jpg`
   },
   "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
   "location": {
@@ -66,7 +66,7 @@ const mockOffers = [{
       "zoom": 13
     }
   },
-  "preview_image": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
+  "previewImage": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
   "images": [
     `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/12.jpg`,
@@ -84,12 +84,12 @@ const mockOffers = [{
     `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`
   ],
   "title": `Amazing and Extremely Central Flat`,
-  "is_favorite": true,
-  "is_premium": false,
+  "isFavorite": true,
+  "isPremium": false,
   "rating": 3.0,
   "type": `apartment`,
   "bedrooms": 4,
-  "max_adults": 8,
+  "maxAdults": 8,
   "price": 569,
   "goods": [
     `Air conditioning`,
@@ -101,8 +101,8 @@ const mockOffers = [{
   "host": {
     "id": 90,
     "name": `Laura`,
-    "is_pro": true,
-    "avatar_url": `img/avatar-angelina.jpg`
+    "isPro": true,
+    "avatarUrl": `img/avatar-angelina.jpg`
   },
   "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
   "location": {
