@@ -2,8 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from '../app/app';
 
-const mockOffers = [
-{
+const mockOffers = [{
   "city": {
     "name": `Paris`,
     "location": {
@@ -12,7 +11,7 @@ const mockOffers = [
       "zoom": 13
     }
   },
-  "preview_image": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
+  "previewImage": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
   "images": [
     `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/12.jpg`,
@@ -27,7 +26,8 @@ const mockOffers = [
     `https://es31-server.appspot.com/six-cities/static/hotel/15.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/6.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/10.jpg`,
-    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`],
+    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`
+  ],
   "title": `Amazing and Extremely Central Flat`,
   "isFavorite": true,
   "isPremium": false,
@@ -47,7 +47,8 @@ const mockOffers = [
     "id": 90,
     "name": `Laura`,
     "isPro": true,
-    "avatarUrl": `img/avatar-angelina.jpg`},
+    "avatarUrl": `img/avatar-angelina.jpg`
+  },
   "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
   "location": {
     "latitude": 52.37154,
@@ -65,7 +66,7 @@ const mockOffers = [
       "zoom": 13
     }
   },
-  "preview_image": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
+  "previewImage": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
   "images": [
     `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/12.jpg`,
@@ -80,7 +81,8 @@ const mockOffers = [
     `https://es31-server.appspot.com/six-cities/static/hotel/15.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/6.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/10.jpg`,
-    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`],
+    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`
+  ],
   "title": `Amazing and Extremely Central Flat`,
   "isFavorite": true,
   "isPremium": false,
@@ -100,7 +102,8 @@ const mockOffers = [
     "id": 90,
     "name": `Laura`,
     "isPro": true,
-    "avatarUrl": `img/avatar-angelina.jpg`},
+    "avatarUrl": `img/avatar-angelina.jpg`
+  },
   "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
   "location": {
     "latitude": 52.37154,
@@ -108,19 +111,30 @@ const mockOffers = [
     "zoom": 16
   },
   "id": 1
-}];
+}
+];
 
-const cities = [`Paris`, `Cologne`]
+const cities = [`Paris`, `Cologne`];
+
+const userData = {
+  id: 1,
+  email: `Oliver.conner@gmail.com`,
+  name: `Oliver.conner`,
+  avatar_url: `img/1.png`,
+  is_pro: false
+};
 
 it(`App correcrly renders`, () => {
   const tree = renderer
-    .create(<App
-      offers={mockOffers}
-      onCityClick={jest.fn()}
-      city={`Paris`}
-      cities={cities}
-    />)
-    .toJSON();
+
+  .create(<App offers = {mockOffers}
+    onCityClick = {jest.fn()}
+    city = {`Paris`}
+    cities = {cities }
+    isAuthorizationRequired = {true}
+    loginUser = {jest.fn()}
+    userData = {userData}
+  />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

@@ -1,3 +1,5 @@
+import {adaptToCamelCase} from '../../utils.js';
+
 const initialState = {
   city: ``,
   offers: []
@@ -8,7 +10,7 @@ const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`
 };
 
-const ActionCreator = {
+const ActionCreatorData = {
   changeCity: (activeCity) => ({
     type: ActionType.CHANGE_CITY,
     payload: activeCity
@@ -16,16 +18,16 @@ const ActionCreator = {
 
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
-    payload: offers
+    payload: adaptToCamelCase(offers)
   }),
-}
+};
 
 
 const Operation = {
   loadOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        dispatch(ActionCreator.loadOffers(response.data));
+        dispatch(ActionCreatorData.loadOffers(response.data));
       });
   },
 };
@@ -41,11 +43,11 @@ const reducer = (state = initialState, action) => {
     case `LOAD_OFFERS`:
       return Object.assign({}, state, {
         offers: action.payload,
-        city: action.payload[Math.floor(Math.random()*action.payload.length)].city.name
+        city: action.payload[Math.floor(Math.random() * action.payload.length)].city.name
       });
-    }
+  }
 
-  return state
-}
+  return state;
+};
 
-export {ActionCreator, reducer, ActionType, Operation};
+export {ActionCreatorData, reducer, ActionType, Operation};

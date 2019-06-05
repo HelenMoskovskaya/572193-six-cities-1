@@ -5,7 +5,7 @@ const CardOffer = (props) => {
 
   const {offer, onActivateElement, onTitleClick} = props;
   return <article className="cities__place-card place-card">
-    {offer.is_premium && (<div className="place-card__mark">
+    {offer.isPremium && (<div className="place-card__mark">
       <span>Premium</span>
     </div>)}
     <div className="cities__image-wrapper place-card__image-wrapper">
@@ -15,7 +15,7 @@ const CardOffer = (props) => {
       }}>
         <img
           className="place-card__image"
-          src={offer.preview_image}
+          src={offer.previewImage}
           width="260"
           height="200"
           alt="Place image"
@@ -55,30 +55,30 @@ const CardOffer = (props) => {
 
 CardOffer.propTypes = {
   offer: PropTypes.shape({
-    city: PropTypes.shape ({
+    city: PropTypes.shape({
       name: PropTypes.string.isRequired,
       location: PropTypes.shape({
         latitude: PropTypes.number.isRequired,
         longitude: PropTypes.number.isRequired,
         zoom: PropTypes.number.isRequired
-      })
-    }),
-    preview_image: PropTypes.string.isRequired,
+      }).isRequired
+    }).isRequired,
+    previewImage: PropTypes.string.isRequired,
     images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     title: PropTypes.string.isRequired,
-    is_favorite: PropTypes.bool.isRequired,
-    is_premium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
     rating: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     bedrooms: PropTypes.number.isRequired,
-    max_adults: PropTypes.number.isRequired,
+    maxAdults: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     host: PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      is_pro: PropTypes.bool.isRequired,
-      avatar_url: PropTypes.string.isRequired
+      isPro: PropTypes.bool.isRequired,
+      avatarUrl: PropTypes.string.isRequired
     }),
     description: PropTypes.string.isRequired,
     location: PropTypes.shape({

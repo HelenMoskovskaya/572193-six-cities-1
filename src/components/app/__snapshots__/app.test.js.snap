@@ -57,7 +57,8 @@ exports[`App correcrly renders 1`] = `
           className="header__left"
         >
           <a
-            className="header__logo-link header__logo-link--active"
+            className="header__logo-link"
+            href="main.html"
           >
             <img
               alt="6 cities logo"
@@ -83,9 +84,14 @@ exports[`App correcrly renders 1`] = `
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
-                />
+                >
+                  <img
+                    className="user__avatar"
+                    src="https://es31-server.appspot.com/six-citiesundefined"
+                  />
+                </div>
                 <span
-                  className="header__user-name user__name"
+                  className="header__login"
                 >
                   Oliver.conner@gmail.com
                 </span>
@@ -435,5 +441,6 @@ exports[`App correcrly renders 1`] = `
       </div>
     </div>
   </main>
+  ;
 </div>
 `;

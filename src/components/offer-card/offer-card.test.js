@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import CardOffer from './offer-card.jsx';
 
-const mockOffer = [{
+const mockOffer = {
   "city": {
     "name": `Paris`,
     "location": {
@@ -11,7 +11,7 @@ const mockOffer = [{
       "zoom": 13
     }
   },
-  "preview_image": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
+  "previewImage": `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
   "images": [
     `https://es31-server.appspot.com/six-cities/static/hotel/3.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/12.jpg`,
@@ -26,7 +26,8 @@ const mockOffer = [{
     `https://es31-server.appspot.com/six-cities/static/hotel/15.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/6.jpg`,
     `https://es31-server.appspot.com/six-cities/static/hotel/10.jpg`,
-    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`],
+    `https://es31-server.appspot.com/six-cities/static/hotel/7.jpg`
+  ],
   "title": `Amazing and Extremely Central Flat`,
   "isFavorite": true,
   "isPremium": false,
@@ -46,7 +47,8 @@ const mockOffer = [{
     "id": 90,
     "name": `Laura`,
     "isPro": true,
-    "avatarUrl": `img/avatar-angelina.jpg`},
+    "avatarUrl": `img/avatar-angelina.jpg`
+  },
   "description": `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
   "location": {
     "latitude": 52.37154,
@@ -54,18 +56,17 @@ const mockOffer = [{
     "zoom": 16
   },
   "id": 1
-}];
+};
 
 
 it(`CardOffer correcrly renders`, () => {
   const tree = renderer
-    .create(<CardOffer
-      offer={mockOffer}
-      onActivateElement={jest.fn()}
-      onTitleClick={jest.fn()}
 
-    />)
-    .toJSON();
+  .create(<CardOffer
+    offer = {mockOffer}
+    onActivateElement = {jest.fn()}
+    onTitleClick = {jest.fn()}
+  />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
