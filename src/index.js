@@ -8,6 +8,8 @@ import thunk from 'redux-thunk';
 import {configureAPI} from './api.js';
 import {Operation} from './reducer/data/data.js';
 import reducer from './reducer/index.js';
+import {BrowserRouter} from "react-router-dom";
+
 
 import App from './components/app/app.jsx';
 
@@ -22,8 +24,10 @@ const init = () => {
   store.dispatch(Operation.loadOffers());
 
   ReactDOM.render(
-      <Provider store = { store } >
-        <App />
+      <Provider store = {store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>, document.querySelector(`#root`));
 };
 

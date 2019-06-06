@@ -8,22 +8,37 @@ import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.
 import {Operation} from '../../reducer/user/user';
 import Header from '../header/header.jsx';
 import Svg from '../svg/svg.jsx';
-
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import withPrivateRoute from '../../hocs/with-private-route.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
+import Favorites from '../favorites/favorites.jsx';
 
 const App = (props) => {
   const {offers, city, onCityClick, cities, isAuthorizationRequired, loginUser, userData} = props;
-  const mainPage = <MainPage offers = {offers} cities = {cities} onCityClick={onCityClick} city={city}/>;
-  const signIn = <SignIn loginUser={loginUser}/>;
 
-  return <div className={`page page--gray ${isAuthorizationRequired ? `page--main` : `page--login`}`}>
+  return <BrowserRouter>
     <Svg />
     <Header
       isAuthorizationRequired = {isAuthorizationRequired}
       userData = {userData}
     />
-    {isAuthorizationRequired ? mainPage : signIn};
-  </div>;
+    <Switch>
+      <Route path="/" exact render={() => {
+        if (isAuthorizationRequired === true) {
+          return <div className="page page-gray page--main">
+            <MainPage offers = {offers} cities = {cities} onCityClick={onCityClick} city={city} />
+          </div>;
+        }
+        return <div className="page page-gray page--login">
+          <SignIn loginUser={loginUser}/></div>;
+      }}
+      />
+      <Route path="/login" exact render={() => {
+        return <div className="page page-gray page--login">
+          <SignIn loginUser={loginUser}/></div>;
+      }}/>
+    </Switch>
+  </BrowserRouter>;
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
