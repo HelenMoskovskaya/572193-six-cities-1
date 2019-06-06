@@ -8,7 +8,7 @@ import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.
 import {Operation} from '../../reducer/user/user';
 import Header from '../header/header.jsx';
 import Svg from '../svg/svg.jsx';
-import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import withPrivateRoute from '../../hocs/with-private-route.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import Favorites from '../favorites/favorites.jsx';
@@ -16,29 +16,22 @@ import Favorites from '../favorites/favorites.jsx';
 const App = (props) => {
   const {offers, city, onCityClick, cities, isAuthorizationRequired, loginUser, userData} = props;
 
-  return <BrowserRouter>
+  return <React.Fragment>
     <Svg />
     <Header
       isAuthorizationRequired = {isAuthorizationRequired}
-      userData = {userData}
-    />
+      userData = {userData}/>
     <Switch>
-      <Route path="/" exact render={() => {
-        if (isAuthorizationRequired === true) {
-          return <div className="page page-gray page--main">
-            <MainPage offers = {offers} cities = {cities} onCityClick={onCityClick} city={city} />
-          </div>;
-        }
-        return <div className="page page-gray page--login">
-          <SignIn loginUser={loginUser}/></div>;
-      }}
+      <Route path="/" exact render={() =>
+        <MainPage offers = {offers} cities = {cities} onCityClick={onCityClick} city={city} />}
       />
-      <Route path="/login" exact render={() => {
-        return <div className="page page-gray page--login">
-          <SignIn loginUser={loginUser}/></div>;
-      }}/>
+      <Route path="/login" exact render={() =>
+        <SignIn loginUser={loginUser}/>}
+      />
+      <Route path="/favorites" component={withPrivateRoute(Favorites)}
+      />
     </Switch>
-  </BrowserRouter>;
+  </React.Fragment>;
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

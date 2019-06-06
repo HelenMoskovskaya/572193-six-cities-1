@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {MAIN_URL} from '../../api.js';
+import {Link} from 'react-router-dom';
 
 const Header = (props) => {
   const {isAuthorizationRequired, userData} = props;
@@ -15,7 +16,8 @@ const Header = (props) => {
         <nav className="header__nav">
           <ul className="header__nav-list">
             <li className="header__nav-item user">
-              <a className="header__nav-link header__nav-link--profile" href="#">
+              <Link to= {isAuthorizationRequired ? `/` : `/login`}
+                className="header__nav-link header__nav-link--profile" href="#">
                 <div className="header__avatar-wrapper user__avatar-wrapper">
                   <img className="user__avatar"
                     src={isAuthorizationRequired ? `${MAIN_URL}${userData.avatarUrl}` : ``}/>
@@ -23,7 +25,7 @@ const Header = (props) => {
                 <span className="header__login">
                   {isAuthorizationRequired ? userData.email : `Sign in`}
                 </span>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
