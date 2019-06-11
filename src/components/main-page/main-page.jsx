@@ -1,56 +1,75 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import OfferList from '../offer-list/offer-list.jsx';
 import MapCity from '../map/map.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
+import Header from '../header/header.jsx';
+import Svg from '../svg/svg.jsx';
+import {connect} from 'react-redux';
+import {getActiveCity, getCityList, getActiveOffers, getLoadStatus} from '../../reducer/data/selectors.js';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import {ActionCreatorData} from '../../reducer/data/data.js';
 
 
-const MainPage = (props) => {
-  const {offers, cities, onCityClick, city} = props;
-  return <main className="page__main page__main--index">
-    <h1 className="visually-hidden">Cities</h1>
-    <div className="cities tabs">
-      <CitiesList
-        cities={cities}
-        city={city}
-        onCityClick={onCityClick}
-      />
-    </div>
-    <div className="cities__places-wrapper">
-      <div className="cities__places-container container">
-        <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{`${offers.length} ${offers.length === 1 ? `place` : `places`} to stay in ${city}`}</b>
-          <form className="places__sorting" action="#" method="get">
-            <span className="places__sorting-caption">Sort by</span>
-            <span className="places__sorting-type" tabIndex="0">
-              Popular
-              <svg className="places__sorting-arrow" width="7" height="4">
-                <use xlinkHref="#icon-arrow-select"/>
-              </svg>
-            </span>
-            <ul className="places__options places__options--custom">
-              <li className="places__option places__option--active" tabIndex="0">Popular</li>
-              <li className="places__option" tabIndex="0">Price: low to high</li>
-              <li className="places__option" tabIndex="0">Price: high to low</li>
-              <li className="places__option" tabIndex="0">Top rated first</li>
-            </ul>
-          </form>
-          <OfferList
-            offers={offers}
-          />
-        </section>
-        <div className="cities__right-section">
-          <section className="cities__map map">
-            <MapCity
-              offers={offers}
-            />
-          </section>
-        </div>
-      </div>
-    </div>
-  </main>;
-};
+class MainPage extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const {offers, cities, onCityClick, city, isAuthorizationRequired, userData, isLoadOffers} = this.props;
+    if (isLoadOffers) {
+      return <div className="page page--gray page--main">
+
+        <Svg />
+        <Header isAuthorizationRequired = {isAuthorizationRequired} userData = {userData}/>
+
+        <main className="page__main page__main--index">
+          <h1 className="visually-hidden">Cities</h1>
+
+          <CitiesList cities={cities} city={city} onCityClick={onCityClick}/>
+
+          <div className="cities__places-wrapper">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{`${offers.length} ${offers.length === 1 ? `place` : `places`} 
+                to stay in ${city}`}</b>
+
+                <OfferList offers={offers}/>
+
+              </section>
+              <div className="cities__right-section">
+                <section className="cities__map map">
+
+                  <MapCity offers={offers}/>
+
+                </section>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>;
+    }
+    return null;
+  }
+}
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: getActiveCity(state),
+  offers: getActiveOffers(state),
+  cities: getCityList(state),
+  isAuthorizationRequired: getAuthorizationStatus(state),
+  userData: getUserData(state),
+  isLoadOffers: getLoadStatus(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCityClick: (activeCity) => {
+    dispatch(ActionCreatorData.changeCity(activeCity));
+  },
+});
+
 
 MainPage.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
@@ -90,7 +109,11 @@ MainPage.propTypes = {
 
   city: PropTypes.string.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  onCityClick: PropTypes.func.isRequired
+  onCityClick: PropTypes.func.isRequired,
+  isAuthorizationRequired: PropTypes.bool.isRequired,
+  userData: PropTypes.object,
+  isLoadOffers: PropTypes.bool.isRequired,
 };
 
-export default MainPage;
+export {MainPage};
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

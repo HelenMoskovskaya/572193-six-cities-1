@@ -22,6 +22,11 @@ export const getCityList = (state) => {
   return cities;
 };
 
+export const getOfferId = (state, id) => {
+  const idNum = Number(id);
+  return state[NAME_SPACE].offers.find((it) => it.id === idNum);
+};
+
 export const getActiveOffers = createSelector(
     getOffers,
     getActiveCity,
