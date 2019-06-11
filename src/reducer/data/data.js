@@ -2,12 +2,14 @@ import {adaptToCamelCase} from '../../utils.js';
 
 const initialState = {
   city: ``,
-  offers: []
+  offers: [],
+  isLoadOffers: false
 };
 
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
-  LOAD_OFFERS: `LOAD_OFFERS`
+  LOAD_OFFERS: `LOAD_OFFERS`,
+  SUCCESS_LOAD: `SUCCESS_LOAD`
 };
 
 const ActionCreatorData = {
@@ -20,6 +22,11 @@ const ActionCreatorData = {
     type: ActionType.LOAD_OFFERS,
     payload: adaptToCamelCase(offers)
   }),
+
+  successLoad: (status) => ({
+    type: ActionType.SUCCESS_LOAD,
+    payload: status
+  }),
 };
 
 
@@ -28,6 +35,7 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreatorData.loadOffers(response.data));
+        dispatch(ActionCreatorData.successLoad(true));
       });
   },
 };
@@ -45,6 +53,10 @@ const reducer = (state = initialState, action) => {
         offers: action.payload,
         city: action.payload[Math.floor(Math.random() * action.payload.length)].city.name
       });
+
+    case `SUCCESS_LOAD`:
+      return Object.assign({}, state, {
+        isLoadOffers: !state.isLoadOffers});
   }
 
   return state;

@@ -1,4 +1,5 @@
 import {adaptToCamelCase} from '../../utils.js';
+import {ServerResponseCode} from '../../constans.js';
 
 const initialState = {
   isAuthorizationRequired: false,
@@ -7,7 +8,7 @@ const initialState = {
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  LOGIN: `LOGIN`
+  LOGIN: `LOGIN`,
 };
 
 const ActionCreatorUser = {
@@ -18,17 +19,26 @@ const ActionCreatorUser = {
 
   logIn: (user) => ({
     type: ActionType.LOGIN,
-    payload: user
-  })
+    payload: adaptToCamelCase(user)
+  }),
+
 };
 
 const Operation = {
   authorizeUser: (email, password) => (dispatch, _getState, api) => {
     return api.post(`/login`, {email, password})
       .then((response) => {
-        if (response.status === 200) {
-          dispatch(ActionCreatorUser.requireAuthorization());
+        dispatch(ActionCreatorUser.requireAuthorization(true));
+        dispatch(ActionCreatorUser.logIn(response.data));
+      });
+  },
+
+  saveAuthorizationData: () => (dispatch, _getState, api) => {
+    return api.get(`/login`)
+      .then((response) => {
+        if (response.status === ServerResponseCode.SUCCESS_CODE) {
           dispatch(ActionCreatorUser.logIn(response.data));
+          dispatch(ActionCreatorUser.requireAuthorization(true));
         }
       });
   },
@@ -44,6 +54,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         user: adaptToCamelCase(action.payload)});
   }
+  
   return state;
 };
 

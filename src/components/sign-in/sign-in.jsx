@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Redirect} from "react-router-dom";
+
 
 const SignIn = (props) => {
-  const {loginUser} = props;
+  const {loginUser, isAuthorizationRequired} = props;
+  if (isAuthorizationRequired) {
+    return <Redirect to="/" />;
+  }
   return <main className="page__main page__main--login">
     <div className="page__login-container container">
       <section className="login">
@@ -36,7 +41,8 @@ const SignIn = (props) => {
           </div>
           <button
             className="login__submit form__submit button"
-            type="submit">Sign in</button>
+            type="submit">Sign in
+          </button>
         </form>
       </section>
       <section className="locations locations--login locations--current">
@@ -53,6 +59,7 @@ const SignIn = (props) => {
 
 SignIn.propTypes = {
   loginUser: PropTypes.func.isRequired,
+  isAuthorizationRequired: PropTypes.bool.isRequired,
 };
 
 export default SignIn;

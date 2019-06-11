@@ -11,6 +11,10 @@ export const getActiveCity = (state) => {
   return state[NAME_SPACE].city;
 };
 
+export const getLoadStatus = (state) => {
+  return state[NAME_SPACE].isLoadOffers;
+};
+
 export const getCityList = (state) => {
   const offers = getOffers(state);
   const cities = [...new Set(offers.map((it) => it.city.name))].slice(0, 6);

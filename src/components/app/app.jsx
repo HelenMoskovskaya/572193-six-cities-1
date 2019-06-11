@@ -3,9 +3,10 @@ import MainPage from '../main-page/main-page.jsx';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreatorData} from '../../reducer/data/data.js';
-import {getActiveCity, getCityList, getActiveOffers} from '../../reducer/data/selectors.js';
+import {getActiveCity, getCityList, getActiveOffers, getLoadStatus} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {Operation} from '../../reducer/user/user';
+import {Operation as DataOperation} from '../../reducer/data/data';
 import Header from '../header/header.jsx';
 import Svg from '../svg/svg.jsx';
 import {Switch, Route} from "react-router-dom";
@@ -13,33 +14,54 @@ import withPrivateRoute from '../../hocs/with-private-route.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import Favorites from '../favorites/favorites.jsx';
 
-const App = (props) => {
-  const {offers, city, onCityClick, cities, isAuthorizationRequired, loginUser, userData} = props;
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return <React.Fragment>
-    <Svg />
-    <Header
-      isAuthorizationRequired = {isAuthorizationRequired}
-      userData = {userData}/>
-    <Switch>
-      <Route path="/" exact render={() =>
-        <MainPage offers = {offers} cities = {cities} onCityClick={onCityClick} city={city} />}
-      />
-      <Route path="/login" exact render={() =>
-        <SignIn loginUser={loginUser}/>}
-      />
-      <Route path="/favorites" component={withPrivateRoute(Favorites)}
-      />
-    </Switch>
-  </React.Fragment>;
-};
+  render() {
+    const {offers,
+      city,
+      onCityClick,
+      cities,
+      isAuthorizationRequired,
+      loginUser,
+      userData,
+      isLoadOffers} = this.props;
+
+    if (isLoadOffers) {
+      return <React.Fragment>
+        <Svg />
+        <Header
+          isAuthorizationRequired = {isAuthorizationRequired}
+          userData = {userData}/>
+        <Switch>
+          <Route path="/" exact render={() =>
+            <MainPage offers = {offers} cities = {cities} onCityClick={onCityClick} city={city} />}
+          />
+          <Route path="/login" exact render={() =>
+            <SignIn loginUser={loginUser} isAuthorizationRequired={isAuthorizationRequired}/>}/>
+          <Route path="/favorites" component={Favorites}/>
+        </Switch>
+      </React.Fragment>;
+    }
+
+    return null;
+  }
+
+  componentDidMount() {
+    this.props.saveUser();
+    this.props.loadOffers();
+  }
+}
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: getActiveCity(state),
   offers: getActiveOffers(state),
   cities: getCityList(state),
   isAuthorizationRequired: getAuthorizationStatus(state),
-  userData: getUserData(state)
+  userData: getUserData(state),
+  isLoadOffers: getLoadStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -49,7 +71,16 @@ const mapDispatchToProps = (dispatch) => ({
 
   loginUser: (email, password) => {
     dispatch(Operation.authorizeUser(email, password));
-  }
+  },
+
+  saveUser: () => {
+    dispatch(Operation.saveAuthorizationData());
+  },
+
+  loadOffers: () => {
+    dispatch(DataOperation.loadOffers());
+  },
+
 });
 
 App.propTypes = {
@@ -93,7 +124,10 @@ App.propTypes = {
   onCityClick: PropTypes.func.isRequired,
   isAuthorizationRequired: PropTypes.bool.isRequired,
   loginUser: PropTypes.func.isRequired,
-  userData: PropTypes.object.isRequired
+  userData: PropTypes.object,
+  saveUser: PropTypes.func.isRequired,
+  loadOffers: PropTypes.func.isRequired,
+  isLoadOffers: PropTypes.bool.isRequired
 };
 
 export {App};

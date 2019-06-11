@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import withPrivateRoute from '../../hocs/with-private-route.jsx';
 
 const Favorites = (props) => {
   const {} = props;
@@ -142,5 +143,5 @@ const Favorites = (props) => {
 Favorites.propTypes = {
 };
 
-export default Favorites;
+export default withPrivateRoute(Favorites);
 
