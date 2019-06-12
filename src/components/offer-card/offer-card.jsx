@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 
 const CardOffer = (props) => {
 
-  const {offer, onActivateElement, onTitleClick} = props;
+  const {offer, onActivateElement} = props;
   return <article className="cities__place-card place-card">
     {offer.isPremium && (<div className="place-card__mark">
       <span>Premium</span>
@@ -42,11 +43,9 @@ const CardOffer = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#" onClick={(evt) => {
-          evt.preventDefault();
-          onTitleClick(offer);
-        }}>
-          {offer.title}</a>
+        <Link to={`/offer/${offer.id}`}>
+          {offer.title}
+        </Link>
       </h2>
       <p className="place-card__type">{offer.type}</p>
     </div>
@@ -90,7 +89,6 @@ CardOffer.propTypes = {
   }).isRequired,
 
   onActivateElement: PropTypes.func.isRequired,
-  onTitleClick: PropTypes.func.isRequired
 };
 
 export default CardOffer;

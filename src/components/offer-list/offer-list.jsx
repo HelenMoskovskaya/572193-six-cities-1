@@ -8,12 +8,11 @@ const OfferList = (props) => {
   const {offers, handleActivateElement} = props;
 
   return <div className="cities__places-list places__list tabs__content">
-    {offers.map((offer, index) =>
+    {offers.map((offer) =>
       <CardOffer
-        key={index}
+        key={offer.id}
         offer={offer}
         onActivateElement={handleActivateElement}
-        onTitleClick={() => {}}
       />
     )}
   </div>;

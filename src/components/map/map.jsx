@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
+import {MarkerSize, MAP_HEIGHT} from '../../constans';
 
 class MapCity extends PureComponent {
   constructor(props) {
@@ -8,7 +9,7 @@ class MapCity extends PureComponent {
   }
 
   render() {
-    return <div id="map" style={{height: 800}}></div>;
+    return <div id="map" style={{height: MAP_HEIGHT}}></div>;
   }
 
   componentDidMount() {
@@ -42,11 +43,11 @@ class MapCity extends PureComponent {
   _addMarkers(offers, group) {
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [MarkerSize.WIDTH, MarkerSize.HEIGHT]
     });
 
     offers.map((offer) => {
-      leaflet.marker([offer.location.latitude, offer.location.longitude], {icon}).addTo(group)
+      leaflet.marker([offer.location.latitude, offer.location.longitude], {icon}).addTo(group);
     });
   }
 
@@ -55,7 +56,7 @@ class MapCity extends PureComponent {
 
     const cityCenter = [offers[0].city.location.latitude, offers[0].city.location.longitude];
     const zoom = offers[0].city.location.zoom;
-    
+
     if (this.map) {
       this.map.setView(cityCenter, zoom);
       this.markers.clearLayers();

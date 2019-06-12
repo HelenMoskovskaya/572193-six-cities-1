@@ -1,19 +1,18 @@
 import axios from 'axios';
-import {ActionCreatorUser} from './reducer/user/user.js';
+import {ServerResponseCode, TIME_OUT_FOR_CONFIG_API, MAIN_URL} from './constans.js';
 
-export const MAIN_URL = `https://es31-server.appspot.com/six-cities`;
 
-export const configureAPI = (dispatch) => {
+export const configureAPI = () => {
   const api = axios.create({
     baseURL: MAIN_URL,
-    timeout: 5000,
+    timeout: TIME_OUT_FOR_CONFIG_API,
     withCredentials: true,
   });
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.response.status === 403) {
-      dispatch(ActionCreatorUser.requireAuthorization(true));
+    if (err.response.status === ServerResponseCode.FORBIDDEN_CODE) {
+      history.pushState(null, null, `/login`);
     }
     return err;
   };

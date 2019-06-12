@@ -11,11 +11,20 @@ export const getActiveCity = (state) => {
   return state[NAME_SPACE].city;
 };
 
+export const getLoadStatus = (state) => {
+  return state[NAME_SPACE].isLoadOffers;
+};
+
 export const getCityList = (state) => {
   const offers = getOffers(state);
   const cities = [...new Set(offers.map((it) => it.city.name))].slice(0, 6);
 
   return cities;
+};
+
+export const getOfferId = (state, id) => {
+  const idNum = Number(id);
+  return state[NAME_SPACE].offers.find((it) => it.id === idNum);
 };
 
 export const getActiveOffers = createSelector(
