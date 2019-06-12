@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Operation} from '../../reducer/user/user';
 import {Operation as DataOperation} from '../../reducer/data/data';
-import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
+import {Router, Switch, Route} from "react-router-dom";
 import withPrivateRoute from '../../hocs/with-private-route.jsx';
 import Login from '../login-page/login-page.jsx';
 import FavoritesPage from '../favorites-page/favorites-page.jsx';
 import OfferPage from '../offer-page/offer-page.jsx';
+import history from "../../history";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <Router>
+    return <Router history={history}>
       <Switch>
         <Route path="/" exact component={MainPage}/>
         <Route path="/login" component={Login}/>

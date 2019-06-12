@@ -8,12 +8,13 @@ import thunk from 'redux-thunk';
 import {configureAPI} from './api.js';
 import reducer from './reducer/index.js';
 import {BrowserRouter} from "react-router-dom";
+import history from './history';
 
 
 import App from './components/app/app.jsx';
 
 const init = () => {
-  const api = configureAPI();
+  const api = configureAPI(() => history.push(`/login`));
   const store = createStore(
       reducer,
       compose(applyMiddleware(thunk.withExtraArgument(api)),
@@ -22,9 +23,7 @@ const init = () => {
 
   ReactDOM.render(
       <Provider store = {store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <App />
       </Provider>,
       document.querySelector(`#root`));
 };
