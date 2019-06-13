@@ -10,6 +10,7 @@ import Login from '../login-page/login-page.jsx';
 import FavoritesPage from '../favorites-page/favorites-page.jsx';
 import OfferPage from '../offer-page/offer-page.jsx';
 import history from "../../history";
+import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 
 
 class App extends React.Component {
@@ -35,6 +36,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  isAuthorizationRequired: getAuthorizationStatus(state),
+
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -40,7 +40,8 @@ const Operation = {
           dispatch(ActionCreatorUser.logIn(response.data));
           dispatch(ActionCreatorUser.requireAuthorization(true));
         }
-      });
+      })
+      .catch(() =>{});
   },
 };
 

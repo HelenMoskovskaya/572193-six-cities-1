@@ -7,7 +7,6 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {configureAPI} from './api.js';
 import reducer from './reducer/index.js';
-import {BrowserRouter} from "react-router-dom";
 import history from './history';
 
 

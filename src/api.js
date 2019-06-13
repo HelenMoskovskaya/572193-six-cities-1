@@ -11,10 +11,6 @@ export const configureAPI = (onLoginFail) => {
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.response.request.responseURL.indexOf(`/login`) === -1 && err.response.status === ServerResponseCode.FORBIDDEN_CODE) {
-      onLoginFail();
-      return;
-    }
     throw err;
   };
 

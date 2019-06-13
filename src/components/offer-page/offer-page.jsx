@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {getLoadStatus, getActiveOffers, getOfferId} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
-import DetailsPhotoGallery from '../details-photo-gallery/details-photo-gallery.jsx';
 
 class OfferPage extends PureComponent {
   constructor(props) {
