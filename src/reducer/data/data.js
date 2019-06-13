@@ -1,7 +1,7 @@
 import {adaptToCamelCase} from '../../utils.js';
 
 const initialState = {
-  city: ``,
+  city: {},
   offers: [],
   isLoadOffers: false
 };
@@ -45,13 +45,13 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case `CHANGE_CITY`:
       return Object.assign({}, state, {
-        city: action.payload
+        city: state.offers.filter((it) => it.city.name === action.payload)[0].city
       });
 
     case `LOAD_OFFERS`:
       return Object.assign({}, state, {
         offers: action.payload,
-        city: action.payload[Math.floor(Math.random() * action.payload.length)].city.name
+        city: action.payload[Math.floor(Math.random() * action.payload.length)].city
       });
 
     case `SUCCESS_LOAD`:

@@ -37,7 +37,6 @@ class App extends React.Component {
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   isAuthorizationRequired: getAuthorizationStatus(state),
-
 });
 
 const mapDispatchToProps = (dispatch) => ({

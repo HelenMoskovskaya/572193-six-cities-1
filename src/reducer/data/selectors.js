@@ -31,7 +31,7 @@ export const getActiveOffers = createSelector(
     getOffers,
     getActiveCity,
     (offers, city) => {
-      return offers.filter((it) => it.city.name === city);
+      return offers.filter((it) => it.city.name === city.name);
     }
 );
 

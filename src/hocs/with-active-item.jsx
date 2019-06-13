@@ -17,6 +17,7 @@ const withActiveItem = (Component) => {
       return <Component
         {...this.props}
         handleActivateElement = {this._handleActivateElement}
+        activeItem = {this.state.activeItem}
       />;
     }
 

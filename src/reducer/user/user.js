@@ -55,7 +55,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         user: adaptToCamelCase(action.payload)});
   }
-  
+
   return state;
 };
 

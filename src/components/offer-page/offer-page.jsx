@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {getLoadStatus, getActiveOffers, getOfferId} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import MapCity from '../map/map.jsx';
 
 class OfferPage extends PureComponent {
   constructor(props) {
@@ -175,7 +176,10 @@ class OfferPage extends PureComponent {
                 </section>
               </div>
             </div>
-            <section className="property__map map"></section>
+            <section className="property__map map">
+              <MapCity
+              />
+            </section>
           </section>
           <div className="container">
             <section className="near-places places">
