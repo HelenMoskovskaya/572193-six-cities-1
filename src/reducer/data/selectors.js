@@ -8,6 +8,10 @@ export const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
+export const getReviews = (state) => {
+  return state[NAME_SPACE].reviews;
+};
+
 export const getActiveCity = (state) => {
   return state[NAME_SPACE].city;
 };
@@ -50,4 +54,21 @@ export const getNeighbourhoodOffers = createSelector(
     }
 );
 
+export const getDetailsOffersForMap = createSelector(
+    getNeighbourhoodOffers,
+    getOfferId,
+    (offers, offer) => {
+      return [...offers, offer];
+    }
+);
+
+export const getSortRewiews = createSelector(
+    getReviews,
+    (reviews) => {
+      return reviews
+      .sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      }).slice(0, 10);
+    }
+);
 
