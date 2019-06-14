@@ -3,6 +3,20 @@ import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {MarkerSize, MAP_HEIGHT} from '../../constans';
 
+const SETTNG_MAP = {
+  zoomControl: false,
+  marker: true,
+  icon: leaflet.icon({
+    iconUrl: `/img/pin.svg`,
+    iconSize: [MarkerSize.WIDTH, MarkerSize.HEIGHT]
+  })
+};
+
+const activeIcon = leaflet.icon({
+  iconUrl: `/img/pin-active.svg`,
+  iconSize: [MarkerSize.WIDTH, MarkerSize.HEIGHT]
+});
+
 class MapCity extends PureComponent {
   constructor(props) {
     super(props);
@@ -25,43 +39,43 @@ class MapCity extends PureComponent {
   }
 
   _createMap() {
-    const {offers} = this.props;
+    const {offers, city, activeOffer} = this.props;
+    this.map = leaflet.map(`map`, SETTNG_MAP);
 
-    this.map = leaflet.map(`map`, {
-      center: [offers[0].city.location.latitude, offers[0].city.location.longitude],
-      zoom: offers[0].city.location.zoom,
-      zoomControl: false,
-      layers: new leaflet.TileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
-    });
+    leaflet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
+        {attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> 
+          contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`})
+          .addTo(this.map);
 
-    this.markers = leaflet.layerGroup().addTo(this.map);
-    this._addMarkers(offers, this.markers);
+    this.markersLayer = leaflet.layerGroup().addTo(this.map);
+    this._setMapView(activeOffer, city);
+    this._addMarkers(offers, activeOffer);
   }
 
-  _addMarkers(offers, group) {
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [MarkerSize.WIDTH, MarkerSize.HEIGHT]
-    });
+  _addMarkers(offers, activeOffer) {
+    for (const offer of offers) {
+      const icon = (activeOffer && activeOffer.id === offer.id) ? activeIcon : SETTNG_MAP.icon;
+      const location = [offer.location.latitude, offer.location.longitude];
+      leaflet.marker(location, {icon}).addTo(this.markersLayer);
+    }
+  }
 
-    offers.map((offer) => {
-      leaflet.marker([offer.location.latitude, offer.location.longitude], {icon}).addTo(group);
-    });
+  _setMapView(activeOffer, city) {
+    const Maplocation = activeOffer ? activeOffer.location : city.location;
+    this.map.setView([Maplocation.latitude, Maplocation.longitude], Maplocation.zoom);
   }
 
   _updateMap() {
-    const {offers} = this.props;
-
-    const cityCenter = [offers[0].city.location.latitude, offers[0].city.location.longitude];
-    const zoom = offers[0].city.location.zoom;
-
+    const {offers, city, activeOffer} = this.props;
     if (this.map) {
-      this.map.setView(cityCenter, zoom);
-      this.markers.clearLayers();
-      this._addMarkers(offers, this.markers);
+      this._setMapView(activeOffer, city);
+      this.markersLayer.clearLayers();
+      this._addMarkers(offers, activeOffer);
     }
+  }
+
+  componentWillUnmount() {
+    this.map.remove();
   }
 }
 
@@ -99,7 +113,9 @@ MapCity.propTypes = {
       zoom: PropTypes.number.isRequired
     }),
     id: PropTypes.number.isRequired
-  })).isRequired
+  })),
+  city: PropTypes.object,
+  activeOffer: PropTypes.object
 };
 
 export default MapCity;

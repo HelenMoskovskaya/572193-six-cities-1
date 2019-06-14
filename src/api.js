@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ServerResponseCode, TIME_OUT_FOR_CONFIG_API, MAIN_URL} from './constans.js';
+import {TIME_OUT_FOR_CONFIG_API, MAIN_URL} from './constans.js';
 
 
 export const configureAPI = () => {
@@ -11,10 +11,7 @@ export const configureAPI = () => {
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.response.status === ServerResponseCode.FORBIDDEN_CODE) {
-      history.pushState(null, null, `/login`);
-    }
-    return err;
+    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);

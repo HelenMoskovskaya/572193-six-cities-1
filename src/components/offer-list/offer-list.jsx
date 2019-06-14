@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CardOffer from '../offer-card/offer-card.jsx';
-import withActiveItem from '../../hocs/with-active-item.jsx';
 
 
 const OfferList = (props) => {
@@ -55,8 +54,8 @@ OfferList.propTypes = {
     id: PropTypes.number.isRequired
   })).isRequired,
 
-  handleActivateElement: PropTypes.func.isRequired
+  handleActivateElement: PropTypes.func
 };
 
 
-export default withActiveItem(OfferList);
+export default OfferList;

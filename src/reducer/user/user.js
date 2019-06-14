@@ -40,7 +40,8 @@ const Operation = {
           dispatch(ActionCreatorUser.logIn(response.data));
           dispatch(ActionCreatorUser.requireAuthorization(true));
         }
-      });
+      })
+      .catch(() =>{});
   },
 };
 
@@ -54,7 +55,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         user: adaptToCamelCase(action.payload)});
   }
-  
+
   return state;
 };
 

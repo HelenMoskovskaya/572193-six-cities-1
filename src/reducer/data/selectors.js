@@ -1,10 +1,15 @@
 import {createSelector} from 'reselect';
 import NameSpace from '../name-spaces';
+import {calculateDistance} from '../../utils.js';
 
 const NAME_SPACE = NameSpace.DATA;
 
 export const getOffers = (state) => {
   return state[NAME_SPACE].offers;
+};
+
+export const getReviews = (state) => {
+  return state[NAME_SPACE].reviews;
 };
 
 export const getActiveCity = (state) => {
@@ -23,16 +28,47 @@ export const getCityList = (state) => {
 };
 
 export const getOfferId = (state, id) => {
-  const idNum = Number(id);
-  return state[NAME_SPACE].offers.find((it) => it.id === idNum);
+  return state[NAME_SPACE].offers.find((it) => it.id === Number(id));
 };
 
 export const getActiveOffers = createSelector(
     getOffers,
     getActiveCity,
     (offers, city) => {
-      return offers.filter((it) => it.city.name === city);
+      return offers.filter((it) => it.city.name === city.name);
     }
 );
 
+export const getNeighbourhoodOffers = createSelector(
+    getOffers,
+    getOfferId,
+    (offers, offer) => {
+      return offers
+      .map((it) => {
+        it.distance = calculateDistance(
+            offer.city.location.latitude, offer.city.location.longitude,
+            it.location.latitude, it.location.longitude, `K`);
+        return it;
+      })
+      .sort((a, b) => a.distance - b.distance).slice(0, 3);
+    }
+);
+
+export const getDetailsOffersForMap = createSelector(
+    getNeighbourhoodOffers,
+    getOfferId,
+    (offers, offer) => {
+      return [...offers, offer];
+    }
+);
+
+export const getSortRewiews = createSelector(
+    getReviews,
+    (reviews) => {
+      return reviews
+      .sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      }).slice(0, 10);
+    }
+);
 

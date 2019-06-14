@@ -38,12 +38,12 @@ const CardOffer = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: `${offer.rating / 5 * 100}` + `%`}} />
+          <span style={{width: `${Math.round(offer.rating) / 5 * 100}` + `%`}} />
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={`/offer/${offer.id}`}>
+        <Link to={`offer/${offer.id}`}>
           {offer.title}
         </Link>
       </h2>
@@ -88,7 +88,7 @@ CardOffer.propTypes = {
     id: PropTypes.number.isRequired
   }).isRequired,
 
-  onActivateElement: PropTypes.func.isRequired,
+  onActivateElement: PropTypes.func,
 };
 
 export default CardOffer;

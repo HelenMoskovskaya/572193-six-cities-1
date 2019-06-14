@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withActiveItem from '../../hocs/with-active-item.jsx';
 
 const CitiesList = (props) => {
-  const {cities, city, onCityClick, handleActivateElement} = props;
+  const {cities, city, onCityClick} = props;
 
   return <div className="cities tabs">
     <section className="locations container">
@@ -11,12 +10,11 @@ const CitiesList = (props) => {
         {cities.map((it) =>
           <li className="locations__item" key={`city-${it}`}>
             <a className={`locations__item-link tabs__item
-            ${it === city ? `tabs__item--active` : ``}`}
+            ${it === city.name ? `tabs__item--active` : ``}`}
             href="#"
             onClick={(evt) => {
               evt.preventDefault();
               onCityClick(it);
-              handleActivateElement(it);
             }}>
               <span>{it}</span>
             </a>
@@ -29,9 +27,8 @@ const CitiesList = (props) => {
 
 CitiesList.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  city: PropTypes.string.isRequired,
+  city: PropTypes.object.isRequired,
   onCityClick: PropTypes.func.isRequired,
-  handleActivateElement: PropTypes.func.isRequired
 };
 
-export default withActiveItem(CitiesList);
+export default CitiesList;
