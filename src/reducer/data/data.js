@@ -3,7 +3,7 @@ import {adaptToCamelCase} from '../../utils.js';
 const initialState = {
   city: {},
   offers: [],
-  isLoadOffers: false
+  isLoadOffers: false,
 };
 
 const ActionType = {
@@ -56,7 +56,8 @@ const reducer = (state = initialState, action) => {
 
     case `SUCCESS_LOAD`:
       return Object.assign({}, state, {
-        isLoadOffers: !state.isLoadOffers});
+        isLoadOffers: !state.isLoadOffers
+      });
   }
 
   return state;

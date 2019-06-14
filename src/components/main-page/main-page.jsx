@@ -6,7 +6,7 @@ import CitiesList from '../cities-list/cities-list.jsx';
 import Header from '../header/header.jsx';
 import Svg from '../svg/svg.jsx';
 import {connect} from 'react-redux';
-import {getActiveCity, getCityList, getActiveOffers, getLoadStatus} from '../../reducer/data/selectors.js';
+import {getActiveCity, getCityList, getActiveOffers, getLoadStatus, getNeighbourhoodOffers} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {ActionCreatorData} from '../../reducer/data/data.js';
 import withActiveItem from '../../hocs/with-active-item.jsx';
@@ -19,7 +19,7 @@ class MainPage extends PureComponent {
   }
 
   render() {
-    const {offers, cities, onCityClick, city, isAuthorizationRequired, userData, isLoadOffers, handleActivateElement, activeItem} = this.props;
+    const {offers, cities, onCityClick, city, isAuthorizationRequired, userData, isLoadOffers, handleActivateElement, activeItem, ololo} = this.props;
     if (isLoadOffers) {
       return <div className="page page--gray page--main">
 

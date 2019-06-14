@@ -13,3 +13,11 @@ export const MarkerSize = {
 };
 
 export const MAP_HEIGHT = `100%`;
+
+export const CalculateDistanceInfo = {
+  DEGREE: 180,
+  DEFAULT_MILES: 1.1515,
+  CONVERTER_FOR_KM: 1.609344,
+  CONVERTER_FOR_NAUTICAL_MILES: 0.8684,
+  NUMBER_OF_MINUTES_IN_DEGREES: 60,
+};

@@ -54,7 +54,7 @@ OfferList.propTypes = {
     id: PropTypes.number.isRequired
   })).isRequired,
 
-  handleActivateElement: PropTypes.func.isRequired
+  handleActivateElement: PropTypes.func
 };
 
 

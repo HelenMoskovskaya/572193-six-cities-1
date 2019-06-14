@@ -43,7 +43,7 @@ const CardOffer = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={`/offer/${offer.id}`}>
+        <Link to={`offer/${offer.id}`}>
           {offer.title}
         </Link>
       </h2>
@@ -88,7 +88,7 @@ CardOffer.propTypes = {
     id: PropTypes.number.isRequired
   }).isRequired,
 
-  onActivateElement: PropTypes.func.isRequired,
+  onActivateElement: PropTypes.func,
 };
 
 export default CardOffer;
