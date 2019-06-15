@@ -32,7 +32,7 @@ class MainPage extends PureComponent {
 
           <CitiesList cities={cities} city={city} onCityClick={(activeCity) => {
             onCityClick(activeCity);
-            handleActivateElement(null);
+            //handleActivateElement(null);
           }}/>
 
           <div className="cities__places-wrapper">

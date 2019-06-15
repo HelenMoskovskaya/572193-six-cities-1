@@ -22,6 +22,12 @@ class OfferPage extends PureComponent {
     this.props.loadReviews();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0);
+    }
+  }
+
   render() {
     const {offer, isLoadOffers, isAuthorizationRequired,
       userData, neighbourhoodOffers, offers, reviews} = this.props;

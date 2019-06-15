@@ -43,7 +43,7 @@ const CardOffer = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={`offer/${offer.id}`}>
+        <Link to={`/offer/${offer.id}`}>
           {offer.title}
         </Link>
       </h2>

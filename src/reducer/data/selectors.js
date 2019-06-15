@@ -46,11 +46,11 @@ export const getNeighbourhoodOffers = createSelector(
       return offers
       .map((it) => {
         it.distance = calculateDistance(
-            offer.city.location.latitude, offer.city.location.longitude,
+            offer.location.latitude, offer.location.longitude,
             it.location.latitude, it.location.longitude, `K`);
         return it;
       })
-      .sort((a, b) => a.distance - b.distance).slice(0, 3);
+      .sort((a, b) => a.distance - b.distance).slice(1, 4);
     }
 );
 
@@ -71,4 +71,3 @@ export const getSortRewiews = createSelector(
       }).slice(0, 10);
     }
 );
-
