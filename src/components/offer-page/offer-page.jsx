@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Svg from '../svg/svg.jsx';
 import Header from '../header/header.jsx';
 import {connect} from 'react-redux';
-import {Operation as DataOperation} from '../../reducer/data/data';
+import {Operation as ReviewsOperation} from '../../reducer/reviews/reviews';
+import {getSortRewiews} from '../../reducer/reviews/selectors';
 import {getLoadStatus, getOfferId, getNeighbourhoodOffers,
-  getDetailsOffersForMap, getSortRewiews} from '../../reducer/data/selectors.js';
+  getDetailsOffersForMap} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import MapCity from '../map/map.jsx';
 import OfferList from '../offer-list/offer-list.jsx';
@@ -13,6 +14,7 @@ import PhotoGallery from '../photo-gallery/photo-gallery.jsx';
 import DetailsInfo from '../details-info/details-info.jsx';
 import HostInfo from '../host-info/host-info.jsx';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
+import ReviewsForm from '../reviews-form/reviews-form.jsx';
 
 class OfferPage extends PureComponent {
   constructor(props) {
@@ -46,12 +48,14 @@ class OfferPage extends PureComponent {
                 <DetailsInfo offer={offer} />
                 <HostInfo offer={offer} />
                 <ReviewsList reviews={reviews}/>
+                <ReviewsForm disabled={true}/>
 
               </div>
             </div>
             <section className="property__map map">
 
-              <MapCity offers={offers} city={offer.city} activeOffer={offer}/>
+              <MapCity offers={offers} city={offer.city}
+                activeOffer={offer} changeZoom={true} key={offer.id}/>
 
             </section>
           </section>
@@ -60,7 +64,7 @@ class OfferPage extends PureComponent {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
 
-                <OfferList offers={neighbourhoodOffers} handleActivateElement={() => null}/>
+                <OfferList offers={neighbourhoodOffers} needLink={true}/>
 
               </div>
             </section>
@@ -87,7 +91,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadReviews: () => {
-    dispatch(DataOperation.loadReviews(ownProps.match.params.id));
+    dispatch(ReviewsOperation.loadReviews(ownProps.match.params.id));
   },
 });
 
@@ -135,6 +139,11 @@ OfferPage.propTypes = {
     isPro: PropTypes.bool,
     name: PropTypes.string
   }),
+  loadReviews: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
+  neighbourhoodOffers: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired,
+  reviews: PropTypes.array
 };
 
 export {OfferPage};

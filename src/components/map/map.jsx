@@ -20,6 +20,7 @@ const activeIcon = leaflet.icon({
 class MapCity extends PureComponent {
   constructor(props) {
     super(props);
+
   }
 
   render() {
@@ -39,7 +40,7 @@ class MapCity extends PureComponent {
   }
 
   _createMap() {
-    const {offers, city, activeOffer} = this.props;
+    const {offers, city, activeOffer, changeZoom} = this.props;
     this.map = leaflet.map(`map`, SETTNG_MAP);
 
     leaflet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
@@ -48,8 +49,8 @@ class MapCity extends PureComponent {
           .addTo(this.map);
 
     this.markersLayer = leaflet.layerGroup().addTo(this.map);
-    this._setMapView(activeOffer, city);
     this._addMarkers(offers, activeOffer);
+    this._setMapView(activeOffer, city, changeZoom);
   }
 
   _addMarkers(offers, activeOffer) {
@@ -60,17 +61,22 @@ class MapCity extends PureComponent {
     }
   }
 
-  _setMapView(activeOffer, city) {
+  _setMapView(activeOffer, city, changeZoom) {
     const Maplocation = activeOffer ? activeOffer.location : city.location;
     this.map.setView([Maplocation.latitude, Maplocation.longitude], Maplocation.zoom);
+
+    if (changeZoom === true) {
+      this.map.setView([Maplocation.latitude, Maplocation.longitude], city.location.zoom);
+    }
   }
 
   _updateMap() {
-    const {offers, city, activeOffer} = this.props;
+    const {offers, city, activeOffer, changeZoom} = this.props;
     if (this.map) {
-      this._setMapView(activeOffer, city);
       this.markersLayer.clearLayers();
       this._addMarkers(offers, activeOffer);
+      this._setMapView(activeOffer, city, changeZoom);
+
     }
   }
 

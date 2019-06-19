@@ -1,21 +1,59 @@
 import React from 'react';
+import withSortMenuToggle from '../../hocs/with-sort-menu-toggle.jsx';
+import {connect} from 'react-redux';
+import {compose} from 'recompose';
+import {getActiveSort} from '../../reducer/data/selectors.js';
+import {ActionCreatorData} from '../../reducer/data/data.js';
+
+const OPTIONS = [
+  `Popular`,
+  `Price: low to high`,
+  `Price: high to low`,
+  `Top rated first`
+];
 
 const Sorting = (props) => {
+  const {isMenuOpen, changeToggle, activeSort, sortOffers} = props;
+
   return <form className="places__sorting" action="#" method="get">
     <span className="places__sorting-caption">Sort by</span>
-    <span className="places__sorting-type" tabIndex="0">
-Popular
+    <span className="places__sorting-type" tabIndex="0" onClick={changeToggle}>
+      {activeSort}
       <svg className="places__sorting-arrow" width="7" height="4">
-        <use xlinkHref="#icon-arrow-select"/>
+        <use xlinkHref="#icon-arrow-select"></use>
       </svg>
     </span>
-    <ul className="places__options places__options--custom">
-      <li className="places__option places__option--active" tabIndex="0">Popular</li>
-      <li className="places__option" tabIndex="0">Price: low to high</li>
-      <li className="places__option" tabIndex="0">Price: high to low</li>
-      <li className="places__option" tabIndex="0">Top rated first</li>
+    <ul className={`places__options places__options--custom ${isMenuOpen ? `places__options--opened` : ``}`}>
+      {OPTIONS.map((option, index) => {
+        return <li
+          key={`${index} - options`}
+          className="places__option"
+          id={option}
+          onClick={() => {
+            sortOffers(option);
+            changeToggle();
+          }}
+          tabIndex={index}>
+          {option}
+        </li>;
+      })}
     </ul>
   </form>;
 };
 
-export default Sorting;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  activeSort: getActiveSort(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  sortOffers: (activeSort) => {
+    dispatch(ActionCreatorData.sortOffers(activeSort));
+  }
+});
+
+export {Sorting};
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withSortMenuToggle
+)(Sorting);
+

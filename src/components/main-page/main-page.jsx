@@ -1,17 +1,15 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import OfferList from '../offer-list/offer-list.jsx';
-import MapCity from '../map/map.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 import Header from '../header/header.jsx';
 import Svg from '../svg/svg.jsx';
 import {connect} from 'react-redux';
-import {getActiveCity, getCityList, getActiveOffers, getLoadStatus, getNeighbourhoodOffers} from '../../reducer/data/selectors.js';
+import {getActiveCity, getCityList, getActiveOffers, getLoadStatus, newActiveCity} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {ActionCreatorData} from '../../reducer/data/data.js';
 import withActiveItem from '../../hocs/with-active-item.jsx';
-import {compose} from 'recompose';
-
+import MainBlockOffers from '../main-block-offers/main-block-offers.jsx';
+import MainEmpty from '../main-empty/main-empty.jsx';
 
 class MainPage extends PureComponent {
   constructor(props) {
@@ -19,46 +17,33 @@ class MainPage extends PureComponent {
   }
 
   render() {
-    const {offers, cities, onCityClick, city, isAuthorizationRequired, userData, isLoadOffers, handleActivateElement, activeItem, ololo} = this.props;
-    if (isLoadOffers) {
-      return <div className="page page--gray page--main">
+    const {offers,
+      cities,
+      onCityClick,
+      city,
+      isAuthorizationRequired,
+      userData,
+      isLoadOffers} = this.props;
 
-        <Svg />
-        <Header isAuthorizationRequired = {isAuthorizationRequired} userData = {userData}/>
+    const WrapOffersBlock = withActiveItem(MainBlockOffers);
 
+    return <div className="page page--gray page--main">
+
+      <Svg />
+      <Header isAuthorizationRequired = {isAuthorizationRequired} userData = {userData}/>
+
+      {isLoadOffers ?
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">
-            Cities</h1>
+              Cities</h1>
 
-          <CitiesList cities={cities} city={city} onCityClick={(activeCity) => {
-            onCityClick(activeCity);
-            //handleActivateElement(null);
-          }}/>
+          <CitiesList cities={cities} city={city} onCityClick={onCityClick}/>
+          <WrapOffersBlock offers={offers} city={city} />
 
-          <div className="cities__places-wrapper">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{`${offers.length} ${offers.length === 1 ? `place` : `places`} 
-                to stay in ${city.name}`}</b>
-                <OfferList offers={offers} handleActivateElement= {handleActivateElement}
-                />
-              </section>
-              <div className="cities__right-section">
-                <section className="cities__map map">
-
-                  <MapCity offers={offers}
-                    city={city}
-                    activeOffer={activeItem}/>
-
-                </section>
-              </div>
-            </div>
-          </div>
         </main>
-      </div>;
-    }
-    return null;
+        : <MainEmpty cities={cities} city={city} onCityClick={onCityClick}/>
+      }
+    </div>;
   }
 }
 
@@ -120,12 +105,9 @@ MainPage.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
   userData: PropTypes.object,
   isLoadOffers: PropTypes.bool.isRequired,
-  handleActivateElement: PropTypes.func.isRequired,
+  handleActivateElement: PropTypes.func,
   activeItem: PropTypes.object
 };
 
 export {MainPage};
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withActiveItem
-)(MainPage);
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

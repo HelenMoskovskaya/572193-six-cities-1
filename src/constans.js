@@ -21,3 +21,27 @@ export const CalculateDistanceInfo = {
   CONVERTER_FOR_NAUTICAL_MILES: 0.8684,
   NUMBER_OF_MINUTES_IN_DEGREES: 60,
 };
+
+export const INPUT_STARS_FOR_REVIEWS = [
+  {
+    value: 5,
+    title: `perfect`
+  },
+  {
+    value: 4,
+    title: `good`
+  },
+  {
+    value: 3,
+    title: `not bad`
+  },
+  {
+    value: 2,
+    title: `badly`
+  },
+  {
+    value: 1,
+    title: `terribly`
+  },
+];
+

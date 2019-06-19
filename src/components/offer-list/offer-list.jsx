@@ -4,7 +4,7 @@ import CardOffer from '../offer-card/offer-card.jsx';
 
 
 const OfferList = (props) => {
-  const {offers, handleActivateElement} = props;
+  const {offers, handleActivateElement, needLink} = props;
 
   return <div className="cities__places-list places__list tabs__content">
     {offers.map((offer) =>
@@ -12,6 +12,7 @@ const OfferList = (props) => {
         key={offer.id}
         offer={offer}
         onActivateElement={handleActivateElement}
+        needLink={needLink}
       />
     )}
   </div>;

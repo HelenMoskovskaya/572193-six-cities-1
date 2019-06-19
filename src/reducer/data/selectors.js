@@ -16,6 +16,10 @@ export const getActiveCity = (state) => {
   return state[NAME_SPACE].city;
 };
 
+export const getActiveSort = (state) => {
+  return state[NAME_SPACE].activeSort;
+};
+
 export const getLoadStatus = (state) => {
   return state[NAME_SPACE].isLoadOffers;
 };
@@ -34,8 +38,21 @@ export const getOfferId = (state, id) => {
 export const getActiveOffers = createSelector(
     getOffers,
     getActiveCity,
-    (offers, city) => {
-      return offers.filter((it) => it.city.name === city.name);
+    getActiveSort,
+    (offers, city, activeSort) => {
+      const activeOffers = offers.filter((it) => it.city.name === city.name);
+      switch (activeSort) {
+        case `Price: low to high`:
+          return activeOffers.sort((a, b) => a.price - b.price);
+
+        case `Price: high to low`:
+          return activeOffers.sort((a, b) => b.price - a.price);
+
+        case `Top rated first`:
+          return activeOffers.sort((a, b) => b.rating - a.rating);
+
+        default: return activeOffers;
+      }
     }
 );
 

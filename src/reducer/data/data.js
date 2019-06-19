@@ -4,14 +4,14 @@ const initialState = {
   city: {},
   offers: [],
   isLoadOffers: false,
-  reviews: []
+  activeSort: `Popular`
 };
 
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   SUCCESS_LOAD: `SUCCESS_LOAD`,
-  LOAD_REVIEWS: `LOAD_REVIEWS`,
+  SORT_OFFERS: `SORT_OFFERS`
 };
 
 const ActionCreatorData = {
@@ -30,10 +30,10 @@ const ActionCreatorData = {
     payload: status
   }),
 
-  loadReviews: (reviews) => ({
-    type: ActionType.LOAD_REVIEWS,
-    payload: adaptToCamelCase(reviews)
-  }),
+  sortOffers: (activeSort) => ({
+    type: ActionType.SORT_OFFERS,
+    payload: activeSort
+  })
 };
 
 
@@ -45,13 +45,6 @@ const Operation = {
         dispatch(ActionCreatorData.successLoad(true));
       });
   },
-
-  loadReviews: (offerId) => (dispatch, _getState, api) => {
-    return api.get(`/comments/${offerId}`)
-    .then((responce) => {
-      dispatch(ActionCreatorData.loadReviews(responce.data));
-    });
-  }
 };
 
 
@@ -73,10 +66,11 @@ const reducer = (state = initialState, action) => {
         isLoadOffers: !state.isLoadOffers
       });
 
-    case `LOAD_REVIEWS`:
+    case `SORT_OFFERS`:
       return Object.assign({}, state, {
-        reviews: action.payload,
+        activeSort: action.payload
       });
+
   }
 
   return state;
