@@ -25,8 +25,8 @@ const ActionCreatorUser = {
 };
 
 const Operation = {
-  authorizeUser: (email, password) => (dispatch, _getState, api) => {
-    return api.post(`/login`, {email, password})
+  authorizeUser: (form) => (dispatch, _getState, api) => {
+    return api.post(`/login`, form)
       .then((response) => {
         dispatch(ActionCreatorUser.requireAuthorization(true));
         dispatch(ActionCreatorUser.logIn(response.data));

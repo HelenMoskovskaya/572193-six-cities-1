@@ -7,6 +7,10 @@ export const getReviews = (state) => {
   return state[NAME_SPACE].reviews;
 };
 
+export const getErrors = (state) => {
+  return state[NAME_SPACE].postReviewsError;
+};
+
 export const getSortRewiews = createSelector(
     getReviews,
     (reviews) => {

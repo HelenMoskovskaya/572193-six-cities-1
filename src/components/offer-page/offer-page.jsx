@@ -28,11 +28,16 @@ class OfferPage extends PureComponent {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       window.scrollTo(0, 0);
     }
+
+    if (this.props.id !== prevProps.id) {
+      this.props.loadReviews();
+    }
   }
 
   render() {
     const {offer, isLoadOffers, isAuthorizationRequired,
       userData, neighbourhoodOffers, offers, reviews} = this.props;
+
     if (isLoadOffers) {
       return <div className="page">
         <Svg />
@@ -47,8 +52,8 @@ class OfferPage extends PureComponent {
 
                 <DetailsInfo offer={offer} />
                 <HostInfo offer={offer} />
-                <ReviewsList reviews={reviews}/>
-                <ReviewsForm disabled={true}/>
+                <ReviewsList reviews={reviews} key={offer.id}/>
+                <ReviewsForm id={offer.id} />
 
               </div>
             </div>
@@ -79,6 +84,7 @@ class OfferPage extends PureComponent {
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   return Object.assign({}, ownProps, {
+    id,
     isLoadOffers: getLoadStatus(state),
     offer: getOfferId(state, id),
     offers: getDetailsOffersForMap(state, id),

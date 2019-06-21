@@ -7,16 +7,11 @@ import {connect} from 'react-redux';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import {Operation} from '../../reducer/user/user';
 import {compose} from 'recompose';
-import withForm from '../../hocs/with-form.jsx';
-import Input from '../input/input.jsx';
+import withAuthorization from '../../hocs/with-authorization.jsx';
 
-const initialState = {
-  email: ``,
-  password: ``
-};
 
 const Login = (props) => {
-  const {loginUser, isAuthorizationRequired, userData, data, onFormChange} = props;
+  const {loginUser, isAuthorizationRequired, userData, form, onFormChange} = props;
 
   if (isAuthorizationRequired) {
     return <Redirect to="/" />;
@@ -25,7 +20,7 @@ const Login = (props) => {
 
     <Svg />
     <Header isAuthorizationRequired = {isAuthorizationRequired} userData = {userData}/>
-    {console.log(data)}
+
     <main className="page__main page__main--login">
       <div className="page__login-container container">
         <section className="login">
@@ -36,33 +31,34 @@ const Login = (props) => {
             method="post"
             onSubmit={(evt) => {
               evt.preventDefault();
-              loginUser(data.email, data.password);
+              loginUser(form);
             }}>
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>
-              <Input
+              <input
                 onChange={onFormChange}
-                value={data.email}
+                value={form.email}
                 className="login__input form__input"
                 type="email"
                 name="email"
                 placeholder="Email"
-                required/>
+                required
+              />
             </div>
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">Password</label>
-              <Input
+              <input
                 onChange={onFormChange}
-                value={data.password}
+                value={form.password}
                 className="login__input form__input"
                 type="password"
                 name="password"
                 placeholder="Password"
-                required/>
+                required
+              />
             </div>
             <button
-              className="login__submit form__submit button" 
-              
+              className="login__submit form__submit button"
               type="submit">Sign in
             </button>
           </form>
@@ -85,8 +81,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: (email, password) => {
-    dispatch(Operation.authorizeUser(email, password));
+  loginUser: (form) => {
+    dispatch(Operation.authorizeUser(form));
   },
 });
 
@@ -100,6 +96,6 @@ Login.propTypes = {
 export {Login};
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    withForm(initialState)
+    withAuthorization
 )(Login);
 
