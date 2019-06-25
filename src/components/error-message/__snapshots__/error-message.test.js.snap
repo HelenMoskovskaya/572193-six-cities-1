@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMessage renders component correctly 1`] = `
+<div
+  className="page page--gray page--main"
+>
+  <div
+    style={
+      Object {
+        "color": "#4481C3",
+        "fontSize": "35px",
+        "textAlign": "center",
+      }
+    }
+  >
+    <p>
+      Sorry, our site is temporarily unavailable.
+    </p>
+  </div>
+</div>
+`;

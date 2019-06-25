@@ -1,49 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
+import {connect} from 'react-redux';
+import {ActionCreatorData, Operation} from '../../reducer/data/data.js';
+import {getActiveItem} from '../../reducer/data/selectors.js';
+import Bookmark from '../bookmark/bookmark.jsx';
+import {ImageOfferSize} from '../../constans.js';
+import {propTypesConstans} from '../../prop-types.js';
+import {CountRating} from '../../constans.js';
+
 
 const CardOffer = (props) => {
+  const {offer, needLink, favoriteClass, changeFavorites, checkActiveOffer, small} = props;
 
-  const {offer, onActivateElement} = props;
-  return <article className="cities__place-card place-card">
-    {offer.isPremium && (<div className="place-card__mark">
+  return <article className={`${favoriteClass ? `favorites__card` : `cities__place-card`} place-card`}>
+    {offer.isPremium ? (<div className="place-card__mark">
       <span>Premium</span>
-    </div>)}
-    <div className="cities__image-wrapper place-card__image-wrapper">
-      <a href="#" onClick={(evt) => {
+    </div>) : null}
+    <div className={`${favoriteClass ? `favorites` : `cities`}__image-wrapper place-card__image-wrapper`}>
+      {needLink ? <Link to={`/offer/${offer.id}`}>
+        <img className="place-card__image" src={offer.previewImage}
+          width={small ? ImageOfferSize.SMALL.width : ImageOfferSize.BIG.width}
+          height={small ? ImageOfferSize.SMALL.height : ImageOfferSize.BIG.height}
+          alt="Place image"/>
+      </Link> : <a href="#" onClick={(evt) => {
         evt.preventDefault();
-        onActivateElement(offer);
+        checkActiveOffer(offer);
       }}>
-        <img
-          className="place-card__image"
-          src={offer.previewImage}
-          width="260"
-          height="200"
+        <img className="place-card__image" src={offer.previewImage}
+          width={small ? ImageOfferSize.SMALL.width : ImageOfferSize.BIG.width}
+          height={small ? ImageOfferSize.SMALL.height : ImageOfferSize.BIG.height}
           alt="Place image"
         />
-      </a>
+      </a>}
     </div>
-    <div className="place-card__info">
+    <div className={`${favoriteClass ? `favorites__card-info` : ``} place-card__info`}>
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
           <b className="place-card__price-value">&euro;{offer.price}</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
-        <button className="place-card__bookmark-button button" type="button">
-          <svg className="place-card__bookmark-icon" width="18" height="19">
-            <use xlinkHref="#icon-bookmark" />
-          </svg>
-          <span className="visually-hidden">To bookmarks</span>
-        </button>
+        <Bookmark
+          isFavorite={offer.isFavorite}
+          small={true}
+          className={`place-card__bookmark-button`}
+          changeFavorites={() => {
+            changeFavorites(offer);
+          }}/>
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: `${Math.round(offer.rating) / 5 * 100}` + `%`}} />
+          <span style={{width: `${Math.round(offer.rating) / CountRating.MAX_POINT * CountRating.CONVERTER_FOR_PERCENT}` + `%`}} />
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={`offer/${offer.id}`}>
+        <Link to={`/offer/${offer.id}`}>
           {offer.title}
         </Link>
       </h2>
@@ -52,43 +64,29 @@ const CardOffer = (props) => {
   </article>;
 };
 
-CardOffer.propTypes = {
-  offer: PropTypes.shape({
-    city: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired
-      }).isRequired
-    }).isRequired,
-    previewImage: PropTypes.string.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    title: PropTypes.string.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    host: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      avatarUrl: PropTypes.string.isRequired
-    }),
-    description: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired
-    }),
-    id: PropTypes.number.isRequired
-  }).isRequired,
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  activeItem: getActiveItem(state)
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  changeFavorites: (offer) => {
+    dispatch(Operation.changeFavorites(offer));
+  },
+
+  checkActiveOffer: (offer) => {
+    dispatch(ActionCreatorData.checkActiveOffer(offer));
+  },
+});
+
+CardOffer.propTypes = {
+  offer: propTypesConstans.OFFER,
+  needLink: PropTypes.bool,
+  favoriteClass: PropTypes.bool,
+  changeFavorites: PropTypes.func.isRequired,
+  checkActiveOffer: PropTypes.func.isRequired,
   onActivateElement: PropTypes.func,
+  small: PropTypes.bool
 };
 
-export default CardOffer;
+export {CardOffer};
+export default connect(mapStateToProps, mapDispatchToProps)(CardOffer);

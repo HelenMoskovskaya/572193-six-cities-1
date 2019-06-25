@@ -1,7 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Operation} from '../../reducer/data/data.js';
+import Bookmark from '../bookmark/bookmark.jsx';
+import {propTypesConstans} from '../../prop-types.js';
+import {CountRating} from '../../constans.js';
 
 const DetailsInfo = (props) => {
-  const {offer} = props;
+  const {offer, changeFavorites} = props;
   return <React.Fragment>
     {offer.isPremium && <div className="property__mark">
       <span>Premium</span>
@@ -10,20 +16,16 @@ const DetailsInfo = (props) => {
       <h1 className="property__name">
         {offer.title}
       </h1>
-      <button className={`property__bookmark-button button
-									${offer.isFavorite && `property__bookmark-button--active`}`}
-      type="button">
-        <svg className="property__bookmark-icon" width="31" height="33">
-          <use xlinkHref="#icon-bookmark"></use>
-        </svg>
-        <span className="visually-hidden">
-          {offer.isFavorite ? `In bookmarks` : `To bookmarks`}
-        </span>
-      </button>
+      <Bookmark
+        isFavorite={offer.isFavorite}
+        className={`property__bookmark-button`}
+        changeFavorites={()=> {
+          changeFavorites(offer);
+        }}/>
     </div>
     <div className="property__rating rating">
       <div className="property__stars rating__stars">
-        <span style={{width: `${Math.round(offer.rating) / 5 * 100}` + `%`}}></span>
+        <span style={{width: `${Math.round(offer.rating) / CountRating.MAX_POINT * CountRating.CONVERTER_FOR_PERCENT}` + `%`}}></span>
         <span className="visually-hidden">Rating</span>
       </div>
       <span className="property__rating-value rating__value">{offer.rating}</span>
@@ -54,4 +56,16 @@ const DetailsInfo = (props) => {
   </React.Fragment>;
 };
 
-export default DetailsInfo;
+const mapDispatchToProps = (dispatch) => ({
+  changeFavorites: (offer) => {
+    dispatch(Operation.changeFavorites(offer));
+  }
+});
+
+DetailsInfo.propTypes = {
+  offer: propTypesConstans.OFFER,
+  changeFavorites: PropTypes.func.isRequired,
+};
+
+export {DetailsInfo};
+export default connect(null, mapDispatchToProps)(DetailsInfo);

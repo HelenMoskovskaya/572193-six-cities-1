@@ -1,0 +1,538 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OfferPage renders correctly 1`] = `
+<div
+  className="page"
+>
+  <Svg />
+  <Header
+    isAuthorizationRequired={false}
+    userData={
+      Object {
+        "avatarUrl": "img/1.png",
+        "email": "Oliver.conner@gmail.com",
+        "id": 1,
+        "isPro": false,
+        "name": "Oliver.conner",
+      }
+    }
+  />
+  <main
+    className="page__main page__main--property"
+  >
+    <section
+      className="property"
+    >
+      <PhotoGallery
+        offer={
+          Object {
+            "bedrooms": 2,
+            "city": Object {
+              "location": Object {
+                "latitude": 51.225402,
+                "longitude": 6.776314,
+                "zoom": 13,
+              },
+              "name": "Amsterdam",
+            },
+            "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+            "goods": Array [
+              "Breakfast",
+              "Washer",
+              "Laptop friendly workspace",
+            ],
+            "host": Object {
+              "avatarUrl": "img/avatar-angelina.jpg",
+              "id": 25,
+              "isPro": true,
+              "name": "Angelina",
+            },
+            "id": 1,
+            "images": Array [
+              "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+              "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+            ],
+            "isFavorite": false,
+            "isPremium": true,
+            "location": Object {
+              "latitude": 51.214402,
+              "longitude": 6.764314000000001,
+              "zoom": 16,
+            },
+            "maxAdults": 8,
+            "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+            "price": 393,
+            "rating": 2.7,
+            "title": "Waterfront with extraordinary view",
+            "type": "hotel",
+          }
+        }
+      />
+      <div
+        className="property__container container"
+      >
+        <div
+          className="property__wrapper"
+        >
+          <Memo(ConnectFunction)
+            offer={
+              Object {
+                "bedrooms": 2,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 51.225402,
+                    "longitude": 6.776314,
+                    "zoom": 13,
+                  },
+                  "name": "Amsterdam",
+                },
+                "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+                "goods": Array [
+                  "Breakfast",
+                  "Washer",
+                  "Laptop friendly workspace",
+                ],
+                "host": Object {
+                  "avatarUrl": "img/avatar-angelina.jpg",
+                  "id": 25,
+                  "isPro": true,
+                  "name": "Angelina",
+                },
+                "id": 1,
+                "images": Array [
+                  "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+                ],
+                "isFavorite": false,
+                "isPremium": true,
+                "location": Object {
+                  "latitude": 51.214402,
+                  "longitude": 6.764314000000001,
+                  "zoom": 16,
+                },
+                "maxAdults": 8,
+                "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                "price": 393,
+                "rating": 2.7,
+                "title": "Waterfront with extraordinary view",
+                "type": "hotel",
+              }
+            }
+          />
+          <HostInfo
+            offer={
+              Object {
+                "bedrooms": 2,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 51.225402,
+                    "longitude": 6.776314,
+                    "zoom": 13,
+                  },
+                  "name": "Amsterdam",
+                },
+                "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+                "goods": Array [
+                  "Breakfast",
+                  "Washer",
+                  "Laptop friendly workspace",
+                ],
+                "host": Object {
+                  "avatarUrl": "img/avatar-angelina.jpg",
+                  "id": 25,
+                  "isPro": true,
+                  "name": "Angelina",
+                },
+                "id": 1,
+                "images": Array [
+                  "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+                ],
+                "isFavorite": false,
+                "isPremium": true,
+                "location": Object {
+                  "latitude": 51.214402,
+                  "longitude": 6.764314000000001,
+                  "zoom": 16,
+                },
+                "maxAdults": 8,
+                "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                "price": 393,
+                "rating": 2.7,
+                "title": "Waterfront with extraordinary view",
+                "type": "hotel",
+              }
+            }
+          />
+          <ReviewsList
+            reviews={
+              Array [
+                Object {
+                  "comment": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+                  "date": "2019-05-08T14:13:56.569Z",
+                  "id": 1,
+                  "rating": 4,
+                  "user": Object {
+                    "avatarUrl": "img/1.png",
+                    "id": 4,
+                    "isPro": false,
+                    "name": "Max",
+                  },
+                },
+              ]
+            }
+          />
+        </div>
+      </div>
+      <section
+        className="property__map map"
+      >
+        <MapCity
+          activeOffer={
+            Object {
+              "bedrooms": 2,
+              "city": Object {
+                "location": Object {
+                  "latitude": 51.225402,
+                  "longitude": 6.776314,
+                  "zoom": 13,
+                },
+                "name": "Amsterdam",
+              },
+              "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+              "goods": Array [
+                "Breakfast",
+                "Washer",
+                "Laptop friendly workspace",
+              ],
+              "host": Object {
+                "avatarUrl": "img/avatar-angelina.jpg",
+                "id": 25,
+                "isPro": true,
+                "name": "Angelina",
+              },
+              "id": 1,
+              "images": Array [
+                "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+                "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+              ],
+              "isFavorite": false,
+              "isPremium": true,
+              "location": Object {
+                "latitude": 51.214402,
+                "longitude": 6.764314000000001,
+                "zoom": 16,
+              },
+              "maxAdults": 8,
+              "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+              "price": 393,
+              "rating": 2.7,
+              "title": "Waterfront with extraordinary view",
+              "type": "hotel",
+            }
+          }
+          changeZoom={true}
+          city={
+            Object {
+              "location": Object {
+                "latitude": 51.225402,
+                "longitude": 6.776314,
+                "zoom": 13,
+              },
+              "name": "Amsterdam",
+            }
+          }
+          offers={
+            Array [
+              Object {
+                "bedrooms": 2,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 51.225402,
+                    "longitude": 6.776314,
+                    "zoom": 13,
+                  },
+                  "name": "Amsterdam",
+                },
+                "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+                "goods": Array [
+                  "Breakfast",
+                  "Washer",
+                  "Laptop friendly workspace",
+                ],
+                "host": Object {
+                  "avatarUrl": "img/avatar-angelina.jpg",
+                  "id": 25,
+                  "isPro": true,
+                  "name": "Angelina",
+                },
+                "id": 1,
+                "images": Array [
+                  "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+                ],
+                "isFavorite": false,
+                "isPremium": true,
+                "location": Object {
+                  "latitude": 51.214402,
+                  "longitude": 6.764314000000001,
+                  "zoom": 16,
+                },
+                "maxAdults": 8,
+                "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                "price": 393,
+                "rating": 2.7,
+                "title": "Waterfront with extraordinary view",
+                "type": "hotel",
+              },
+              Object {
+                "bedrooms": 2,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 51.225402,
+                    "longitude": 6.776314,
+                    "zoom": 13,
+                  },
+                  "name": "Amsterdam",
+                },
+                "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+                "goods": Array [
+                  "Breakfast",
+                  "Washer",
+                  "Laptop friendly workspace",
+                ],
+                "host": Object {
+                  "avatarUrl": "img/avatar-angelina.jpg",
+                  "id": 25,
+                  "isPro": true,
+                  "name": "Angelina",
+                },
+                "id": 3,
+                "images": Array [
+                  "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+                ],
+                "isFavorite": false,
+                "isPremium": true,
+                "location": Object {
+                  "latitude": 51.214402,
+                  "longitude": 6.764314000000001,
+                  "zoom": 16,
+                },
+                "maxAdults": 8,
+                "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                "price": 393,
+                "rating": 2.7,
+                "title": "Waterfront with extraordinary view",
+                "type": "hotel",
+              },
+            ]
+          }
+        />
+      </section>
+    </section>
+    <div
+      className="container"
+    >
+      <section
+        className="near-places places"
+      >
+        <h2
+          className="near-places__title"
+        >
+          Other places in the neighbourhood
+        </h2>
+        <div
+          className="near-places__list places__list"
+        >
+          <OfferList
+            needLink={true}
+            offers={
+              Array [
+                Object {
+                  "bedrooms": 2,
+                  "city": Object {
+                    "location": Object {
+                      "latitude": 51.225402,
+                      "longitude": 6.776314,
+                      "zoom": 13,
+                    },
+                    "name": "Amsterdam",
+                  },
+                  "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+                  "goods": Array [
+                    "Breakfast",
+                    "Washer",
+                    "Laptop friendly workspace",
+                  ],
+                  "host": Object {
+                    "avatarUrl": "img/avatar-angelina.jpg",
+                    "id": 25,
+                    "isPro": true,
+                    "name": "Angelina",
+                  },
+                  "id": 1,
+                  "images": Array [
+                    "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+                  ],
+                  "isFavorite": false,
+                  "isPremium": true,
+                  "location": Object {
+                    "latitude": 51.214402,
+                    "longitude": 6.764314000000001,
+                    "zoom": 16,
+                  },
+                  "maxAdults": 8,
+                  "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                  "price": 393,
+                  "rating": 2.7,
+                  "title": "Waterfront with extraordinary view",
+                  "type": "hotel",
+                },
+                Object {
+                  "bedrooms": 2,
+                  "city": Object {
+                    "location": Object {
+                      "latitude": 51.225402,
+                      "longitude": 6.776314,
+                      "zoom": 13,
+                    },
+                    "name": "Amsterdam",
+                  },
+                  "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+                  "goods": Array [
+                    "Breakfast",
+                    "Washer",
+                    "Laptop friendly workspace",
+                  ],
+                  "host": Object {
+                    "avatarUrl": "img/avatar-angelina.jpg",
+                    "id": 25,
+                    "isPro": true,
+                    "name": "Angelina",
+                  },
+                  "id": 3,
+                  "images": Array [
+                    "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+                    "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+                  ],
+                  "isFavorite": false,
+                  "isPremium": true,
+                  "location": Object {
+                    "latitude": 51.214402,
+                    "longitude": 6.764314000000001,
+                    "zoom": 16,
+                  },
+                  "maxAdults": 8,
+                  "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                  "price": 393,
+                  "rating": 2.7,
+                  "title": "Waterfront with extraordinary view",
+                  "type": "hotel",
+                },
+              ]
+            }
+          />
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+`;

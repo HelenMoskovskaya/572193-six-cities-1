@@ -1,22 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {MemoryRouter} from 'react-router';
 import Header from './header.jsx';
+import {userData} from '../../mocks/mocks.js';
 
-const mockUserData = {
-  id: 1,
-  email: `Oliver.conner@gmail.com`,
-  name: `Oliver.conner`,
-  avatar_url: `img/1.png`,
-  is_pro: false
-};
 
-it(`App correcrly renders`, () => {
-  const tree = renderer
+describe(`Header`, () => {
+  it(`renders component correctly`, () => {
+    const tree = renderer.
+      create(<MemoryRouter><Header
+        isAuthorizationRequired={false}
+        userData={userData}
+      /></MemoryRouter>).
+      toJSON();
 
-  .create(<Header
-    isAuthorizationRequired={true}
-    userData={mockUserData}
-  />).toJSON();
-
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
 });

@@ -5,7 +5,7 @@ exports[`Map correcrly renders 1`] = `
   id="map"
   style={
     Object {
-      "height": 800,
+      "height": "100%",
     }
   }
 />

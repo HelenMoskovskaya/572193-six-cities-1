@@ -1,13 +1,21 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import SignIn from './sign-in.jsx';
+import {MemoryRouter} from 'react-router';
+import {Login} from './login-page.jsx';
+import {userData} from '../../mocks/mocks.js';
 
-it(`SignIn correcrly renders`, () => {
-  const tree = renderer
+describe(`Login`, () => {
+  it(`renders component correctly`, () => {
+    const tree = renderer.
+      create(<MemoryRouter><Login
+        loginUser={jest.fn()}
+        isAuthorizationRequired={false}
+        userData={userData}
+        form={{}}
+        onFormChange={jest.fn()}
+      /></MemoryRouter>).
+      toJSON();
 
-  .create(<SignIn
-    loginUser={jest.fn()}
-  />).toJSON();
-
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
 });

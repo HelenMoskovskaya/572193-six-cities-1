@@ -1,4 +1,5 @@
 import React from 'react';
+import {propTypesConstans} from '../../prop-types.js';
 
 const HostInfo = (props) => {
   const {offer} = props;
@@ -22,6 +23,10 @@ const HostInfo = (props) => {
       </p>
     </div>
   </div>;
+};
+
+HostInfo.propTypes = {
+  offer: propTypesConstans.OFFER,
 };
 
 export default HostInfo;

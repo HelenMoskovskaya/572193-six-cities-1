@@ -1,17 +1,20 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {MemoryRouter} from 'react-router';
 import CitiesList from './cities-list.jsx';
+import {cities, cityMock} from '../../mocks/mocks.js';
 
-const citiesMock = [`Paris`, `Cologne`]
 
-it(`CitiesList correcrly renders`, () => {
-  const tree = renderer
-    .create(<CitiesList
-      cities={citiesMock}
-      city={`Cologne`}
-      onCityClick={jest.fn()}
-    />)
-    .toJSON();
+describe(`CitiesList`, () => {
+  it(`renders component correctly`, () => {
+    const tree = renderer.
+      create(<MemoryRouter><CitiesList
+        cities={cities}
+        city={cityMock}
+        onCityClick={jest.fn()}
+      /></MemoryRouter>).
+      toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
 });

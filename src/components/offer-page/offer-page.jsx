@@ -1,18 +1,21 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Operation as ReviewsOperation} from '../../reducer/reviews/reviews';
+import {getSortRewiews} from '../../reducer/reviews/selectors';
+import {getLoadStatus, getOfferId, getNeighbourhoodOffers, getDetailsOffersForMap} from '../../reducer/data/selectors.js';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import Svg from '../svg/svg.jsx';
 import Header from '../header/header.jsx';
-import {connect} from 'react-redux';
-import {Operation as DataOperation} from '../../reducer/data/data';
-import {getLoadStatus, getOfferId, getNeighbourhoodOffers,
-  getDetailsOffersForMap, getSortRewiews} from '../../reducer/data/selectors.js';
-import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import MapCity from '../map/map.jsx';
 import OfferList from '../offer-list/offer-list.jsx';
 import PhotoGallery from '../photo-gallery/photo-gallery.jsx';
 import DetailsInfo from '../details-info/details-info.jsx';
 import HostInfo from '../host-info/host-info.jsx';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
+import ReviewsForm from '../reviews-form/reviews-form.jsx';
+import {propTypesConstans} from '../../prop-types.js';
+
 
 class OfferPage extends PureComponent {
   constructor(props) {
@@ -22,9 +25,20 @@ class OfferPage extends PureComponent {
     this.props.loadReviews();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0);
+    }
+
+    if (this.props.id !== prevProps.id) {
+      this.props.loadReviews();
+    }
+  }
+
   render() {
     const {offer, isLoadOffers, isAuthorizationRequired,
       userData, neighbourhoodOffers, offers, reviews} = this.props;
+
     if (isLoadOffers) {
       return <div className="page">
         <Svg />
@@ -39,13 +53,15 @@ class OfferPage extends PureComponent {
 
                 <DetailsInfo offer={offer} />
                 <HostInfo offer={offer} />
-                <ReviewsList reviews={reviews}/>
+                <ReviewsList reviews={reviews} key={offer.id}/>
+                {isAuthorizationRequired ? <ReviewsForm id={offer.id} /> : null}
 
               </div>
             </div>
             <section className="property__map map">
 
-              <MapCity offers={offers} city={offer.city} activeOffer={offer}/>
+              <MapCity offers={offers} city={offer.city}
+                activeOffer={offer} changeZoom={true}/>
 
             </section>
           </section>
@@ -54,7 +70,7 @@ class OfferPage extends PureComponent {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
 
-                <OfferList offers={neighbourhoodOffers} handleActivateElement={() => null}/>
+                <OfferList offers={neighbourhoodOffers} needLink={true}/>
 
               </div>
             </section>
@@ -69,6 +85,7 @@ class OfferPage extends PureComponent {
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   return Object.assign({}, ownProps, {
+    id,
     isLoadOffers: getLoadStatus(state),
     offer: getOfferId(state, id),
     offers: getDetailsOffersForMap(state, id),
@@ -81,54 +98,21 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadReviews: () => {
-    dispatch(DataOperation.loadReviews(ownProps.match.params.id));
+    dispatch(ReviewsOperation.loadReviews(ownProps.match.params.id));
   },
 });
 
 OfferPage.propTypes = {
-  offer: PropTypes.shape({
-    city: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired
-      })
-    }),
-    previewImage: PropTypes.string.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    title: PropTypes.string.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    host: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      avatarUrl: PropTypes.string.isRequired
-    }),
-    description: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired
-    }),
-    id: PropTypes.number.isRequired
-  }),
+  offers: PropTypes.arrayOf(propTypesConstans.OFFER),
+  offer: propTypesConstans.OFFER,
   isLoadOffers: PropTypes.bool.isRequired,
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  userData: PropTypes.shape({
-    avatarUrl: PropTypes.string,
-    email: PropTypes.string,
-    id: PropTypes.number,
-    isPro: PropTypes.bool,
-    name: PropTypes.string
-  }),
+  userData: propTypesConstans.USER_DATA,
+  loadReviews: PropTypes.func,
+  neighbourhoodOffers: PropTypes.arrayOf(propTypesConstans.OFFER),
+  reviews: PropTypes.arrayOf(propTypesConstans.REVIEW),
+  location: PropTypes.object,
+  id: PropTypes.string,
 };
 
 export {OfferPage};
