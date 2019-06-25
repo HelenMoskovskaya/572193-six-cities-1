@@ -169,6 +169,10 @@ export const cityMock = {
     zoom: 13
   }
 };
+export const loginInMock = {
+  email: `ana@yandex.com`,
+  password: `123456`
+};
 
 export const cities = [`Amsterdam`, `Paris`, `Colone`];
 

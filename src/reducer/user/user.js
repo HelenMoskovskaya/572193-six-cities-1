@@ -1,5 +1,4 @@
 import {adaptToCamelCase} from '../../utils.js';
-import {ServerResponseCode} from '../../constans.js';
 import {ActionCreatorData} from '../data/data.js';
 
 const initialState = {
@@ -38,10 +37,8 @@ const Operation = {
   saveAuthorizationData: () => (dispatch, _getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        if (response.status === ServerResponseCode.SUCCESS_CODE) {
-          dispatch(ActionCreatorUser.logIn(response.data));
-          dispatch(ActionCreatorUser.requireAuthorization(true));
-        }
+        dispatch(ActionCreatorUser.logIn(response.data));
+        dispatch(ActionCreatorUser.requireAuthorization(true));
       })
       .catch(() =>{});
   },
