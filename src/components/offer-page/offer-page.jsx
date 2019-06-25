@@ -108,11 +108,11 @@ OfferPage.propTypes = {
   isLoadOffers: PropTypes.bool.isRequired,
   isAuthorizationRequired: PropTypes.bool.isRequired,
   userData: propTypesConstans.USER_DATA,
-  loadReviews: PropTypes.func.isRequired,
+  loadReviews: PropTypes.func,
   neighbourhoodOffers: PropTypes.arrayOf(propTypesConstans.OFFER),
   reviews: PropTypes.arrayOf(propTypesConstans.REVIEW),
   location: PropTypes.object,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };
 
 export {OfferPage};

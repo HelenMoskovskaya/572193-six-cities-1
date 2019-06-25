@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CitiesList correcrly renders 1`] = `
+exports[`CitiesList renders component correctly 1`] = `
 <div
   className="cities tabs"
 >
@@ -10,6 +10,20 @@ exports[`CitiesList correcrly renders 1`] = `
     <ul
       className="locations__list tabs__list"
     >
+      <li
+        className="locations__item"
+      >
+        <a
+          className="locations__item-link tabs__item
+            tabs__item--active"
+          href="#"
+          onClick={[Function]}
+        >
+          <span>
+            Amsterdam
+          </span>
+        </a>
+      </li>
       <li
         className="locations__item"
       >
@@ -34,7 +48,7 @@ exports[`CitiesList correcrly renders 1`] = `
           onClick={[Function]}
         >
           <span>
-            Cologne
+            Colone
           </span>
         </a>
       </li>

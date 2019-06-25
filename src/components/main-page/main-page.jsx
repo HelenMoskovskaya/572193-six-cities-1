@@ -76,7 +76,8 @@ class MainPage extends PureComponent {
         : <MainEmpty cities={cities} city={city} onCityClick={onCityClick}/>
       }
     </div>;
-  }}
+  }
+}
 
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

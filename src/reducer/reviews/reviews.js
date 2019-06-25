@@ -52,6 +52,8 @@ const Operation = {
       dispatch(ActionCreator.postReview(response.data));
       if (response.status === ServerResponseCode.SUCCESS_CODE) {
         dispatch(ActionCreator.getIsReviewsend(true));
+        dispatch(ActionCreator.getIsReviewsend(false));
+
       }
     })
     .catch((error) => {

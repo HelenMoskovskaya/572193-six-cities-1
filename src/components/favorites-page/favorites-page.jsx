@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 FavoritesPage.propTypes = {
-  loadFavorites: PropTypes.func.isRequired,
+  loadFavorites: PropTypes.func,
   isAuthorizationRequired: PropTypes.bool.isRequired,
   userData: propTypesConstans.USER_DATA,
   offersByCity: PropTypes.object.isRequired,

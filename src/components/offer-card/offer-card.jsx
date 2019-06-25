@@ -14,9 +14,9 @@ const CardOffer = (props) => {
   const {offer, needLink, favoriteClass, changeFavorites, checkActiveOffer, small} = props;
 
   return <article className={`${favoriteClass ? `favorites__card` : `cities__place-card`} place-card`}>
-    {offer.isPremium && (<div className="place-card__mark">
+    {offer.isPremium ? (<div className="place-card__mark">
       <span>Premium</span>
-    </div>)}
+    </div>) : null}
     <div className={`${favoriteClass ? `favorites` : `cities`}__image-wrapper place-card__image-wrapper`}>
       {needLink ? <Link to={`/offer/${offer.id}`}>
         <img className="place-card__image" src={offer.previewImage}

@@ -1,202 +1,122 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OfferList correcrly renders 1`] = `
+exports[`OfferList renders correctly 1`] = `
 <div
   className="cities__places-list places__list tabs__content"
 >
-  <article
-    className="cities__place-card place-card"
-  >
-    <div
-      className="cities__image-wrapper place-card__image-wrapper"
-    >
-      <a
-        href="#"
-        onClick={[Function]}
-      >
-        <img
-          alt="Place image"
-          className="place-card__image"
-          height="200"
-          src="https://es31-server.appspot.com/six-cities/static/hotel/3.jpg"
-          width="260"
-        />
-      </a>
-    </div>
-    <div
-      className="place-card__info"
-    >
-      <div
-        className="place-card__price-wrapper"
-      >
-        <div
-          className="place-card__price"
-        >
-          <b
-            className="place-card__price-value"
-          >
-            €
-            569
-          </b>
-          <span
-            className="place-card__price-text"
-          >
-            / night
-          </span>
-        </div>
-        <button
-          className="place-card__bookmark-button button"
-          type="button"
-        >
-          <svg
-            className="place-card__bookmark-icon"
-            height="19"
-            width="18"
-          >
-            <use
-              xlinkHref="#icon-bookmark"
-            />
-          </svg>
-          <span
-            className="visually-hidden"
-          >
-            To bookmarks
-          </span>
-        </button>
-      </div>
-      <div
-        className="place-card__rating rating"
-      >
-        <div
-          className="place-card__stars rating__stars"
-        >
-          <span
-            style={
-              Object {
-                "width": "60%",
-              }
-            }
-          />
-          <span
-            className="visually-hidden"
-          >
-            Rating
-          </span>
-        </div>
-      </div>
-      <h2
-        className="place-card__name"
-      >
-        <a
-          href="#"
-          onClick={[Function]}
-        >
-          Amazing and Extremely Central Flat
-        </a>
-      </h2>
-      <p
-        className="place-card__type"
-      >
-        apartment
-      </p>
-    </div>
-  </article>
-  <article
-    className="cities__place-card place-card"
-  >
-    <div
-      className="cities__image-wrapper place-card__image-wrapper"
-    >
-      <a
-        href="#"
-        onClick={[Function]}
-      >
-        <img
-          alt="Place image"
-          className="place-card__image"
-          height="200"
-          src="https://es31-server.appspot.com/six-cities/static/hotel/3.jpg"
-          width="260"
-        />
-      </a>
-    </div>
-    <div
-      className="place-card__info"
-    >
-      <div
-        className="place-card__price-wrapper"
-      >
-        <div
-          className="place-card__price"
-        >
-          <b
-            className="place-card__price-value"
-          >
-            €
-            569
-          </b>
-          <span
-            className="place-card__price-text"
-          >
-            / night
-          </span>
-        </div>
-        <button
-          className="place-card__bookmark-button button"
-          type="button"
-        >
-          <svg
-            className="place-card__bookmark-icon"
-            height="19"
-            width="18"
-          >
-            <use
-              xlinkHref="#icon-bookmark"
-            />
-          </svg>
-          <span
-            className="visually-hidden"
-          >
-            To bookmarks
-          </span>
-        </button>
-      </div>
-      <div
-        className="place-card__rating rating"
-      >
-        <div
-          className="place-card__stars rating__stars"
-        >
-          <span
-            style={
-              Object {
-                "width": "60%",
-              }
-            }
-          />
-          <span
-            className="visually-hidden"
-          >
-            Rating
-          </span>
-        </div>
-      </div>
-      <h2
-        className="place-card__name"
-      >
-        <a
-          href="#"
-          onClick={[Function]}
-        >
-          Amazing and Extremely Central Flat
-        </a>
-      </h2>
-      <p
-        className="place-card__type"
-      >
-        apartment
-      </p>
-    </div>
-  </article>
+  <Memo(ConnectFunction)
+    offer={
+      Object {
+        "bedrooms": 2,
+        "city": Object {
+          "location": Object {
+            "latitude": 51.225402,
+            "longitude": 6.776314,
+            "zoom": 13,
+          },
+          "name": "Amsterdam",
+        },
+        "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+        "goods": Array [
+          "Breakfast",
+          "Washer",
+          "Laptop friendly workspace",
+        ],
+        "host": Object {
+          "avatarUrl": "img/avatar-angelina.jpg",
+          "id": 25,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 1,
+        "images": Array [
+          "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+        ],
+        "isFavorite": false,
+        "isPremium": true,
+        "location": Object {
+          "latitude": 51.214402,
+          "longitude": 6.764314000000001,
+          "zoom": 16,
+        },
+        "maxAdults": 8,
+        "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+        "price": 393,
+        "rating": 2.7,
+        "title": "Waterfront with extraordinary view",
+        "type": "hotel",
+      }
+    }
+  />
+  <Memo(ConnectFunction)
+    offer={
+      Object {
+        "bedrooms": 2,
+        "city": Object {
+          "location": Object {
+            "latitude": 51.225402,
+            "longitude": 6.776314,
+            "zoom": 13,
+          },
+          "name": "Amsterdam",
+        },
+        "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+        "goods": Array [
+          "Breakfast",
+          "Washer",
+          "Laptop friendly workspace",
+        ],
+        "host": Object {
+          "avatarUrl": "img/avatar-angelina.jpg",
+          "id": 25,
+          "isPro": true,
+          "name": "Angelina",
+        },
+        "id": 3,
+        "images": Array [
+          "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+          "https://es31-server.appspot.com/six-cities/static/hotel/14.jpg",
+        ],
+        "isFavorite": false,
+        "isPremium": true,
+        "location": Object {
+          "latitude": 51.214402,
+          "longitude": 6.764314000000001,
+          "zoom": 16,
+        },
+        "maxAdults": 8,
+        "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+        "price": 393,
+        "rating": 2.7,
+        "title": "Waterfront with extraordinary view",
+        "type": "hotel",
+      }
+    }
+  />
 </div>
 `;

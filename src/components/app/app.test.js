@@ -2,8 +2,16 @@ import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import {App} from './app.jsx';
 
-it(`App snapshot`, () => {
-  const renderer = new ShallowRenderer();
-  const tree = renderer.render(<App/>);
-  expect(tree).toMatchSnapshot();
+
+const renderer = new ShallowRenderer();
+
+describe(`App`, () => {
+  it(`renders correctly`, () => {
+    renderer.render(
+        <App
+        />
+    );
+    const tree = renderer.getRenderOutput();
+    expect(tree).toMatchSnapshot();
+  });
 });

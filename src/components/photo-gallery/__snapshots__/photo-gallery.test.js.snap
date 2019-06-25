@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoGallery renders component correctly 1`] = `
+<div
+  className="property__gallery-container container"
+>
+  <div
+    className="property__gallery"
+  >
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Photo offer"
+        className="property__image"
+        src="https://es31-server.appspot.com/six-cities/static/hotel/18.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Photo offer"
+        className="property__image"
+        src="https://es31-server.appspot.com/six-cities/static/hotel/4.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Photo offer"
+        className="property__image"
+        src="https://es31-server.appspot.com/six-cities/static/hotel/12.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Photo offer"
+        className="property__image"
+        src="https://es31-server.appspot.com/six-cities/static/hotel/20.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Photo offer"
+        className="property__image"
+        src="https://es31-server.appspot.com/six-cities/static/hotel/17.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Photo offer"
+        className="property__image"
+        src="https://es31-server.appspot.com/six-cities/static/hotel/15.jpg"
+      />
+    </div>
+  </div>
+</div>
+`;
