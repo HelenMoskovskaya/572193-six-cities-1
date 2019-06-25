@@ -1,5 +1,6 @@
 import {adaptToCamelCase} from '../../utils.js';
 import {ServerResponseCode} from '../../constans.js';
+import {ActionCreatorData} from '../data/data.js';
 
 const initialState = {
   isAuthorizationRequired: false,
@@ -30,6 +31,7 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreatorUser.requireAuthorization(true));
         dispatch(ActionCreatorUser.logIn(response.data));
+        dispatch(ActionCreatorData.checkActiveOffer(null));
       });
   },
 

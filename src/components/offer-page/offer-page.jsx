@@ -1,13 +1,12 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import Svg from '../svg/svg.jsx';
-import Header from '../header/header.jsx';
 import {connect} from 'react-redux';
 import {Operation as ReviewsOperation} from '../../reducer/reviews/reviews';
 import {getSortRewiews} from '../../reducer/reviews/selectors';
-import {getLoadStatus, getOfferId, getNeighbourhoodOffers,
-  getDetailsOffersForMap} from '../../reducer/data/selectors.js';
+import {getLoadStatus, getOfferId, getNeighbourhoodOffers, getDetailsOffersForMap} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
+import Svg from '../svg/svg.jsx';
+import Header from '../header/header.jsx';
 import MapCity from '../map/map.jsx';
 import OfferList from '../offer-list/offer-list.jsx';
 import PhotoGallery from '../photo-gallery/photo-gallery.jsx';
@@ -15,6 +14,8 @@ import DetailsInfo from '../details-info/details-info.jsx';
 import HostInfo from '../host-info/host-info.jsx';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import ReviewsForm from '../reviews-form/reviews-form.jsx';
+import {propTypesConstans} from '../../prop-types.js';
+
 
 class OfferPage extends PureComponent {
   constructor(props) {
@@ -53,14 +54,14 @@ class OfferPage extends PureComponent {
                 <DetailsInfo offer={offer} />
                 <HostInfo offer={offer} />
                 <ReviewsList reviews={reviews} key={offer.id}/>
-                <ReviewsForm id={offer.id} />
+                {isAuthorizationRequired ? <ReviewsForm id={offer.id} /> : null}
 
               </div>
             </div>
             <section className="property__map map">
 
               <MapCity offers={offers} city={offer.city}
-                activeOffer={offer} changeZoom={true} key={offer.id}/>
+                activeOffer={offer} changeZoom={true}/>
 
             </section>
           </section>
@@ -102,54 +103,16 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 OfferPage.propTypes = {
-  offer: PropTypes.shape({
-    city: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired
-      })
-    }),
-    previewImage: PropTypes.string.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    title: PropTypes.string.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    host: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      avatarUrl: PropTypes.string.isRequired
-    }),
-    description: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired
-    }),
-    id: PropTypes.number.isRequired
-  }),
+  offers: PropTypes.arrayOf(propTypesConstans.OFFER),
+  offer: propTypesConstans.OFFER,
   isLoadOffers: PropTypes.bool.isRequired,
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  userData: PropTypes.shape({
-    avatarUrl: PropTypes.string,
-    email: PropTypes.string,
-    id: PropTypes.number,
-    isPro: PropTypes.bool,
-    name: PropTypes.string
-  }),
+  userData: propTypesConstans.USER_DATA,
   loadReviews: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired,
-  neighbourhoodOffers: PropTypes.array.isRequired,
-  offers: PropTypes.array.isRequired,
-  reviews: PropTypes.array
+  neighbourhoodOffers: PropTypes.arrayOf(propTypesConstans.OFFER),
+  reviews: PropTypes.arrayOf(propTypesConstans.REVIEW),
+  location: PropTypes.object,
+  id: PropTypes.string.isRequired,
 };
 
 export {OfferPage};

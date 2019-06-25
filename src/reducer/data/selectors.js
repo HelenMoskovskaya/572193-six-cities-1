@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect';
 import NameSpace from '../name-spaces';
 import {calculateDistance} from '../../utils.js';
+import {MAX_CITIES_LENGTH, MAX_NEAREST_OFFERS, MAX_REVIEWS} from '../../constans.js';
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -8,8 +9,16 @@ export const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
+export const getLoadError = (state) => {
+  return state[NAME_SPACE].errorLoad;
+};
+
 export const getReviews = (state) => {
   return state[NAME_SPACE].reviews;
+};
+
+export const getActiveItem = (state) => {
+  return state[NAME_SPACE].activeOffer;
 };
 
 export const getActiveCity = (state) => {
@@ -24,9 +33,13 @@ export const getLoadStatus = (state) => {
   return state[NAME_SPACE].isLoadOffers;
 };
 
+export const getFavorites = (state) => {
+  return state[NAME_SPACE].favorites;
+};
+ 
 export const getCityList = (state) => {
   const offers = getOffers(state);
-  const cities = [...new Set(offers.map((it) => it.city.name))].slice(0, 6);
+  const cities = [...new Set(offers.map((it) => it.city.name))].slice(0, MAX_CITIES_LENGTH);
 
   return cities;
 };
@@ -67,7 +80,7 @@ export const getNeighbourhoodOffers = createSelector(
             it.location.latitude, it.location.longitude, `K`);
         return it;
       })
-      .sort((a, b) => a.distance - b.distance).slice(1, 4);
+      .sort((a, b) => a.distance - b.distance).slice(1, MAX_NEAREST_OFFERS + 1);
     }
 );
 
@@ -79,12 +92,22 @@ export const getDetailsOffersForMap = createSelector(
     }
 );
 
-export const getSortRewiews = createSelector(
-    getReviews,
-    (reviews) => {
-      return reviews
-      .sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-      }).slice(0, 10);
+const getPreFavorites = (array) => {
+  const byCity = {};
+
+  array.forEach((offer) => {
+    if (!byCity[offer.city.name]) {
+      byCity[offer.city.name] = [];
+    }
+    byCity[offer.city.name].push(offer);
+  });
+
+  return byCity;
+};
+
+export const getOffersByCity = createSelector(
+    getFavorites,
+    (offers) => {
+      return getPreFavorites(offers);
     }
 );

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {MAIN_URL} from '../../constans.js';
 import {Link} from 'react-router-dom';
+import {propTypesConstans} from '../../prop-types.js';
 
 const Header = (props) => {
   const {isAuthorizationRequired, userData} = props;
@@ -37,11 +38,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  userData: PropTypes.shape({
-    avatarUrl: PropTypes.string,
-    email: PropTypes.string
-  }),
-  onSignInClick: PropTypes.func
+  userData: propTypesConstans.USER_DATA,
 };
 
 export default Header;

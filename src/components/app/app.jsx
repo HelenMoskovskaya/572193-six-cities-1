@@ -1,16 +1,16 @@
 import React from 'react';
-import MainPage from '../main-page/main-page.jsx';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import history from "../../history";
+import {compose} from 'recompose';
+import {Router, Switch, Route} from "react-router-dom";
 import {Operation} from '../../reducer/user/user';
 import {Operation as DataOperation} from '../../reducer/data/data';
-import {Router, Switch, Route} from "react-router-dom";
-import withPrivateRoute from '../../hocs/with-private-route.jsx';
+import MainPage from '../main-page/main-page.jsx';
 import Login from '../login-page/login-page.jsx';
 import FavoritesPage from '../favorites-page/favorites-page.jsx';
 import OfferPage from '../offer-page/offer-page.jsx';
-import history from "../../history";
-import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
+import withStatusError from '../../hocs/with-status-error.jsx';
 
 
 class App extends React.Component {
@@ -35,10 +35,6 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  isAuthorizationRequired: getAuthorizationStatus(state),
-});
-
 const mapDispatchToProps = (dispatch) => ({
   saveUser: () => {
     dispatch(Operation.saveAuthorizationData());
@@ -47,13 +43,16 @@ const mapDispatchToProps = (dispatch) => ({
   loadOffers: () => {
     dispatch(DataOperation.loadOffers());
   },
-
 });
 
 App.propTypes = {
-  loadOffers: PropTypes.func.isRequired,
-  saveUser: PropTypes.func.isRequired,
+  loadOffers: PropTypes.func,
+  saveUser: PropTypes.func
 };
 
+
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default compose(
+    connect(null, mapDispatchToProps),
+    withStatusError
+)(App);

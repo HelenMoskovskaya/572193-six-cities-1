@@ -28,12 +28,11 @@ const withAuthorization = (Component) => {
 
     _onFormChange(evt) {
       const {value, name} = evt.currentTarget;
-      
-      this.setState(({form}) => ({
-        form: {
-          ...form,
-          [name]: value,
-        },
+
+      this.setState((oldState) => ({
+        form: Object.assign({}, oldState.form, {
+          [name]: value
+        }),
       }));
     }
   };

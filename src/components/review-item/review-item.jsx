@@ -1,4 +1,6 @@
 import React from 'react';
+import {CountRating} from '../../constans.js';
+import {propTypesConstans} from '../../prop-types.js';
 
 const ReviewItem = (props) => {
   const {review} = props;
@@ -12,7 +14,7 @@ const ReviewItem = (props) => {
     <div className="reviews__info">
       <div className="reviews__rating rating">
         <div className="reviews__stars rating__stars">
-          <span style={{width: `${Math.round(review.rating) / 5 * 100}` + `%`}}></span>
+          <span style={{width: `${Math.round(review.rating) / CountRating.MAX_POINT * CountRating.CONVERTER_FOR_PERCENT}` + `%`}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
@@ -22,6 +24,10 @@ const ReviewItem = (props) => {
       </time>
     </div>
   </li>;
+};
+
+ReviewItem.propTypes = {
+  review: propTypesConstans.REVIEW,
 };
 
 export default ReviewItem;

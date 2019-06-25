@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Redirect} from "react-router-dom";
+import {compose} from 'recompose';
+import {connect} from 'react-redux';
+import {Operation} from '../../reducer/user/user';
+import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
 import Header from '../header/header.jsx';
 import Svg from '../svg/svg.jsx';
-import {connect} from 'react-redux';
-import {getAuthorizationStatus, getUserData} from '../../reducer/user/selectors.js';
-import {Operation} from '../../reducer/user/user';
-import {compose} from 'recompose';
 import withAuthorization from '../../hocs/with-authorization.jsx';
+import {propTypesConstans} from '../../prop-types.js';
 
 
 const Login = (props) => {
@@ -89,8 +90,9 @@ const mapDispatchToProps = (dispatch) => ({
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  userData: PropTypes.object,
-  form: PropTypes.object,
+  userData: propTypesConstans.USER_DATA,
+  form: PropTypes.objectOf(PropTypes.string),
+  onFormChange: PropTypes.func.isRequired,
 };
 
 export {Login};

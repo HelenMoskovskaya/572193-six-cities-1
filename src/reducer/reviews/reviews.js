@@ -1,14 +1,17 @@
 import {adaptToCamelCase} from '../../utils.js';
+import {ServerResponseCode} from '../../constans.js';
 
 const initialState = {
   reviews: [],
+  isReviewSend: false,
   postReviewsError: null
 };
 
 const ActionType = {
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   POST_REVIEW: `POST_REVIEW`,
-  POST_REVIEWS_ERROR: `POST_REVIEWS_ERROR`
+  POST_REVIEWS_ERROR: `POST_REVIEWS_ERROR`,
+  CHECK_REVIEW_SEND: `CHECK_REVIEW_SEND`
 };
 
 const ActionCreator = {
@@ -27,6 +30,10 @@ const ActionCreator = {
     payload: postReviewsError
   }),
 
+  getIsReviewsend: (form) => ({
+    type: ActionType.CHECK_REVIEW_SEND,
+    payload: form
+  }),
 };
 
 
@@ -36,16 +43,16 @@ const Operation = {
     .then((response) => {
       dispatch(ActionCreator.loadReviews(response.data));
     })
-    .catch((error) => {
-      throw error;
-    });
+    .catch(() => {});
   },
 
   postReview: (offerId, review) => (dispatch, _getState, api) => {
     return api.post(`/comments/${offerId}`, review)
     .then((response) => {
       dispatch(ActionCreator.postReview(response.data));
-      dispatch(ActionCreator.getError(null));
+      if (response.status === ServerResponseCode.SUCCESS_CODE) {
+        dispatch(ActionCreator.getIsReviewsend(true));
+      }
     })
     .catch((error) => {
       dispatch(ActionCreator.getError(error));
@@ -70,10 +77,15 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         postReviewsError: action.payload,
       });
+
+    case `CHECK_REVIEW_SEND`:
+      return Object.assign({}, state, {
+        isReviewSend: action.payload,
+      });
   }
 
   return state;
 };
 
-export {reducer, Operation};
+export {reducer, Operation, ActionCreator};
 

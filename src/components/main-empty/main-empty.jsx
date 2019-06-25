@@ -1,5 +1,7 @@
 import React from 'react';
 import CitiesList from '../cities-list/cities-list.jsx';
+import PropTypes from 'prop-types';
+import {propTypesConstans} from '../../prop-types.js';
 
 const MainEmpty = (props) => {
   const {city, cities, onCityClick} = props;
@@ -23,6 +25,12 @@ const MainEmpty = (props) => {
       </div>
     </div>
   </main>;
+};
+
+MainEmpty.propTypes = {
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  city: propTypesConstans.CITY,
+  onCityClick: PropTypes.func.isRequired,
 };
 
 export default MainEmpty;

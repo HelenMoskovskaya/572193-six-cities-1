@@ -1,9 +1,10 @@
 import React from 'react';
-import withSortMenuToggle from '../../hocs/with-sort-menu-toggle.jsx';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
-import {getActiveSort} from '../../reducer/data/selectors.js';
 import {ActionCreatorData} from '../../reducer/data/data.js';
+import {getActiveSort} from '../../reducer/data/selectors.js';
+import withSortMenuToggle from '../../hocs/with-sort-menu-toggle.jsx';
 
 const OPTIONS = [
   `Popular`,
@@ -50,6 +51,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreatorData.sortOffers(activeSort));
   }
 });
+
+Sorting.propTypes = {
+  isMenuOpen: PropTypes.bool,
+  changeToggle: PropTypes.func,
+  activeSort: PropTypes.string,
+  sortOffers: PropTypes.func,
+};
 
 export {Sorting};
 export default compose(

@@ -1,24 +1,22 @@
 import React from 'react';
-import {INPUT_STARS_FOR_REVIEWS} from '../../constans.js';
-import withReviewsForm from '../../hocs/with-reviews-form.jsx';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
 import {Operation} from '../../reducer/reviews/reviews.js';
 import {getErrors} from '../../reducer/reviews/selectors';
-import ErrorMessage from '../error-message/error-message.jsx';
-
+import {INPUT_STARS_FOR_REVIEWS} from '../../constans.js';
+import withReviewsForm from '../../hocs/with-reviews-form.jsx';
+import {ValidationForm} from '../../constans.js';
 
 const ReviewsForm = (props) => {
-  const {disabled, onFormChange, onSubmitForm, form, postReview, id, error} = props;
-  const submit = (evt) => {
-    evt.preventDefault();
-    postReview(id, form);
-    onSubmitForm();
-  };
+  const {disabled, onFormChange, form, postReview, id, error} = props;
+
   return <React.Fragment>
     <form className="reviews__form form" action="#" method="post"
-      onSubmit={
-        submit}>
+      onSubmit={(evt) => {
+        evt.preventDefault();
+        postReview(id, form);
+      }}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {INPUT_STARS_FOR_REVIEWS.map((it) =>
@@ -48,8 +46,8 @@ const ReviewsForm = (props) => {
         placeholder="Tell how was your stay, what you like and what can be improved"
         required
         onChange={onFormChange}
-        minLength={50}
-        maxLength={300}
+        minLength={ValidationForm.MIN_LENGTH_REVIEW}
+        maxLength={ValidationForm.MAX_LENGTH_REVIEW}
         value={form.comment}
       />
       <div className="reviews__button-wrapper">
@@ -66,7 +64,10 @@ const ReviewsForm = (props) => {
       </div>
     </form>
 
-    {(error !== null) ? <ErrorMessage /> : null}
+    {error !== null ?
+      <div style={{color: `#ff9000`, fontSize: `20px`, marginLeft: `50px`}}>
+        <p>Ooops... Something went wrong (: Please, try again later</p>
+      </div> : null}
 
   </React.Fragment>;
 };
@@ -82,7 +83,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 ReviewsForm.propTypes = {
-
+  disabled: PropTypes.bool.isRequired,
+  onFormChange: PropTypes.func.isRequired,
+  form: PropTypes.object,
+  postReview: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  error: PropTypes.object
 };
 
 export {ReviewsForm};
