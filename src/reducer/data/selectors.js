@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
 import NameSpace from '../name-spaces';
 import {calculateDistance} from '../../utils.js';
-import {MAX_CITIES_LENGTH, MAX_NEAREST_OFFERS, MAX_REVIEWS} from '../../constans.js';
+import {MAX_CITIES_LENGTH, MAX_NEAREST_OFFERS} from '../../constans.js';
 
 const NAME_SPACE = NameSpace.DATA;
 

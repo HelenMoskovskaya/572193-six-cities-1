@@ -23,7 +23,6 @@ const OfferList = (props) => {
 OfferList.propTypes = {
   offers: PropTypes.arrayOf(propTypesConstans.OFFER),
   needLink: PropTypes.bool,
-  handleActivateElement: PropTypes.func,
   favoriteClass: PropTypes.bool,
   small: PropTypes.bool
 };
